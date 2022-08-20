@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1920
     height: 1007
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Console
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 521}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1007
-  m_MinSize: {x: 875, y: 521}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 707, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 1
-  controlID: 16
+  controlID: 113
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 707, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
-  controlID: 17
+  controlID: 114
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 321}
   m_MaxSize: {x: 4001, y: 8021}
   vertical: 1
-  controlID: 18
+  controlID: 124
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 471}
   m_MaxSize: {x: 10002, y: 14021}
   vertical: 1
-  controlID: 80
+  controlID: 55
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -731,8 +731,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4eedffff
-      m_LastClickedID: -4786
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 6cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -795,21 +795,21 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Shader
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Shader
+  - Assets
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: U:\GitHub\PMFD\PMFD2020
+  m_LastProjectPath: M:\GitHub\PMFD\PMFD2020
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d63d0000
-    m_LastClickedID: 15830
+    m_SelectedIDs: cc3d0000
+    m_LastClickedID: 15820
     m_ExpandedIDs: 00000000cc3d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -865,22 +865,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 60370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MetaBallSample
-      m_OriginalName: MetaBallSample
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 394
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -926,7 +926,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 225
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0
