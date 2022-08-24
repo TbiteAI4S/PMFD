@@ -2,6 +2,24 @@ Shader "MetaBall/MetaBallSample2"
 {
     Properties
     {
+        // Diffuse
+        _Color("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _DiffusePower("Diffuse Power", Float) = 3
+        _DiffuseLevels("DiffuseLevels", int) = 3
+        // Specular
+        _SpecColor("Specular", Color) = (0.4, 0.5, 0.6, 1)
+        _SpecPower("Specular Power", Float) = 3
+        _SpecAtten("Specular Attenuation", Range(0,1)) = 1
+        _SpecThreshold("Specular Threshold", Range(0,1)) = 0.4
+        // Edge
+        _EdgeColor("Edge Color", Color) = (0, 0, 0, 1)
+        _EdgeThreshold("Edge Threshold", Range(0,1)) = 0.2
+        // Radial Basis Function
+        _K("RadialBasis Constant", Float) = 7
+        _Threshold("Isosurface Threshold", Range(0,1)) = 0.5
+        _Epsilon("Normal Epsilon", Range(0,1)) = 0.1
+
+
         _ypos("floor height",float) = -0.25
     }
     SubShader
@@ -17,6 +35,24 @@ Shader "MetaBall/MetaBallSample2"
             uniform float _ypos;
             #include "UnityCG.cginc"
             
+            uniform float3 _ParticlesPos[10];   //メタボールの座標
+
+            float4 _Color;						// Diffuse Color.
+            float  _DiffusePower;				// Diffuse Power.
+            int _DiffuseLevels;
+
+            float4 _SpecColor;					// Specular Color.
+            float _SpecPower;					// Specular Power.
+            fixed _SpecAtten;					// Specular Scale.
+            fixed _SpecThreshold;				// Specular threshold.
+
+            float4 _EdgeColor;					// Edge Color.
+            fixed _EdgeThreshold;				// Edge threshold.
+
+            float _K;                            // Radial basis function constant.
+            fixed _Threshold;                   //メタボールの半径
+            fixed _Epsilon;                     //正規分布
+
             //Making noise
             float hash(float2 p)
             {
@@ -37,13 +73,20 @@ Shader "MetaBall/MetaBallSample2"
                                  hash(i + float2(1.0,1.0)), u.x), u.y);
             }
             ///////////////////////////////////////////////////////////////////////
-
+            /*
+            * 溶けるように滑らかに接続
+            * d1:距離 , d2:距離 , k:係数
+            */
             float smoothMin(float d1,float d2,float k)
             {
                 return -log(exp(-k * d1) + exp(-k * d2)) / k;
             }
 
             // Base distance function
+            /*
+            * メタボースのサイズを取得
+            * p:ボールの座標 , s:球の半径
+            */
             float ball(float3 p,float s)
             {
                 return length(p) - s;
@@ -51,6 +94,10 @@ Shader "MetaBall/MetaBallSample2"
 
 
             // Making ball status
+            /*
+            * ボールの位置と半径の取得
+            * i:ボールの番号
+            */
             float4 metaballvalue(float i)
             {
                 float kt = 3 * _Time.y * (0.1 + 0.01 * i);
@@ -61,6 +108,10 @@ Shader "MetaBall/MetaBallSample2"
                 return  float4(ballpos,scale);
             }
             // Making ball distance function
+            /*
+            * MetaballValueを反映した距離関数
+            * p:座標, i:ボールの番号
+            */
             float metaballone(float3 p, float i)
             {
                 float4 value = metaballvalue(i);
@@ -70,6 +121,10 @@ Shader "MetaBall/MetaBallSample2"
             }
 
             //Making metaballs distance function
+            /*
+            * メタボール(群)の距離関数
+            * p:座標
+            */
             float metaball(float3 p)
             {
                 float d1;
