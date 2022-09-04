@@ -101,12 +101,15 @@ Shader "MetaBall/MetaBallSample"
 
             /*計算*/
             float scalarField(float3 pos) {
-            float density = 0;
-            for (int i = 0; i < 10; i++) {
-                float dis = distance(pos, _ParticlesPos[i].xyz);
-                density += exp(-_K * (dis));
-            }
-            return density;
+                //濃度
+                float density = 0;
+                //各パーティクルに対して
+                for (int i = 0; i < 10; i++) {
+                    //パーティクルと現在の座標
+                    float dis = distance(pos, _ParticlesPos[i].xyz);
+                    density += exp(-_K * (dis));
+                }
+                return density;
             }
             
             float scalarField(float x, float y, float z) {
@@ -125,6 +128,7 @@ Shader "MetaBall/MetaBallSample"
 
             //陰影付け
             float3 blinnPhongToon(float3 V, float3 N, float3 L) {
+                //ハーフベクトル
                 float3 H = normalize(V + L);
                 float NdotH = saturate(dot(N, H)); // for specular.
                 float NdotV = saturate(dot(N, V)); // for fresnel.

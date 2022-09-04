@@ -183,10 +183,29 @@ public class Tools : MonoBehaviour
         float d = -a * Vec.x - b * Vec.y - c * Vec.z;
     }
 
-    //シグモイド曲線を作る
-    //引数：制御点のリスト(controllPoints)，曲線の分割数(dv)，曲がりのパラメータ(a, 0<=a<=1)
-    //返り値：曲線の座標リスト
-    public float[] Sigmoid(List<Vector3> controllPoints, int dv, float a)
+
+    //3次エルミートスプライン
+    //引数：
+    //返り値：
+    public float cubic_hermite(float p0, float m0, float p1, float m1, float t)
+    {
+        float dx = p0 - p1;
+        return (((dx * 2.0f + m0 + m1) * t - dx * 3.0f - m0 * 2.0f - m1) * t + m0) * t + p0;
+    }
+
+    //3次エルミートスプラインによる点列の補間
+    public void curve(Vector3 p, Vector3 p0, Vector3 m0, Vector3 p1, Vector3 m1, float t)
+    {
+        p[0] = cubic_hermite(p0[0], m0[0], p1[0], m1[0], t);
+        p[1] = cubic_hermite(p0[1], m0[1], p1[1], m1[1], t);
+        p[2] = cubic_hermite(p0[2], m0[2], p1[2], m1[2], t);
+    }
+
+
+//シグモイド曲線を作る
+//引数：制御点のリスト(controllPoints)，曲線の分割数(dv)，曲がりのパラメータ(a, 0<=a<=1)
+//返り値：曲線の座標リスト
+public float[] Sigmoid(List<Vector3> controllPoints, int dv, float a)
     {
         //制御点の個数
         int cpNecks = controllPoints.Count;

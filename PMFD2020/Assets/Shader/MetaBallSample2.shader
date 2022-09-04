@@ -4,6 +4,11 @@ Shader "MetaBall/MetaBallSample2"
     {
         // Diffuse
         _Color("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _Color2("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _Color3("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _Color4("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _Color5("Tint", Color) = (0.2, 0.3, 0.4, 1)
+        _Color6("Tint", Color) = (0.2, 0.3, 0.4, 1)
         _DiffusePower("Diffuse Power", Float) = 3
         _DiffuseLevels("DiffuseLevels", int) = 3
         // Specular
@@ -19,7 +24,7 @@ Shader "MetaBall/MetaBallSample2"
         _Threshold("Isosurface Threshold", Range(0,1)) = 0.5
         _Epsilon("Normal Epsilon", Range(0,1)) = 0.1
 
-
+        //床の高さ
         _ypos("floor height",float) = -0.25
     }
     SubShader
@@ -32,12 +37,18 @@ Shader "MetaBall/MetaBallSample2"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            uniform float _ypos;
             #include "UnityCG.cginc"
+
+            uniform float _ypos;
             
-            uniform float3 _ParticlesPos[10];   //メタボールの座標
+           
 
             float4 _Color;						// Diffuse Color.
+            float4 _Color2;
+            float4 _Color3;
+            float4 _Color4;
+            float4 _Color5;
+            float4 _Color6;
             float  _DiffusePower;				// Diffuse Power.
             int _DiffuseLevels;
 
@@ -100,11 +111,15 @@ Shader "MetaBall/MetaBallSample2"
             */
             float4 metaballvalue(float i)
             {
+                //時間を利用した係数
                 float kt = 3 * _Time.y * (0.1 + 0.01 * i);
+                //係数とノイズを利用してボールの座標を決定
                 //float3 ballpos = 0.3 * float3(noise(float2(i,i) + kt),noise(float2(i + 10,i * 20) + kt),noise(float2(i * 20,i + 20) + kt));
                 float3 ballpos = 0.3 * float3(noise(float2(i,i) + kt),noise(float2(i + 10,i * 20) + kt),noise(float2(i * 20,i + 20) + kt));
+                //係数とノイズを利用してボールのサイズを決定
                 //float scale = 0.05 + 0.02 * hash(float2(i,i));
                 float scale = 0.05 + 0.02 * hash(float2(i,i));
+
                 return  float4(ballpos,scale);
             }
             // Making ball distance function
@@ -114,9 +129,13 @@ Shader "MetaBall/MetaBallSample2"
             */
             float metaballone(float3 p, float i)
             {
+                //ボールの位置，サイズを決定
                 float4 value = metaballvalue(i);
+                //ボールの場所を計算
                 float3 ballpos = p - value.xyz;
+                //ボールのサイズを取得
                 float scale = value.w;
+
                 return  ball(ballpos,scale);
             }
 
@@ -127,8 +146,12 @@ Shader "MetaBall/MetaBallSample2"
             */
             float metaball(float3 p)
             {
+                //距離1
                 float d1;
+                //距離2は1ループ前の距離
+                //初めはpと0の距離
                 float d2 = metaballone(p,0);
+                //残り5つのボールの距離関数を算出
                 for (int i = 1; i < 6; ++i) 
                 {
 
@@ -151,24 +174,40 @@ Shader "MetaBall/MetaBallSample2"
 
 
             //enhanced sphere tracing  http://erleuchtet.org/~cupe/permanent/enhanced_sphere_tracing.pdf
-
+            /*
+            * レイマーチング
+            * ro:レイ, rd:方向
+            */
             float raymarch(float3 ro,float3 rd)
             {
+                //前方の半径
                 float previousradius = 0.0;
+                //最大距離
                 float maxdistance = 3;
+                //レイのスタート地点が物体の中にあるか外にあるか
                 float outside = dist(ro) < 0 ? -1 : +1;
+                //t = 1における画素の半径
                 float pixelradius = 0.02;
+                //レイの進むスピード
                 float omega = 1.2;
+                //
                 float t = 0.0001;
+                //1ループ前に進んだ距離
                 float step = 0;
+                //pixeltの最小値
                 float minpixelt = 999999999;
+                //pixelt が一番小さい時のtの値
                 float mint = 0;
+
                 float hit = 0.01;
+
                 for (int i = 0; i < 60; ++i) 
                 {
 
                     float radius = outside * dist(ro + rd * t);
                     bool fail = omega > 1 && step > (abs(radius) + abs(previousradius));
+                    //stepの値が今進もうとしている距離radiusと１ループ前に進もうとした距離previousradius(omegaがかかっていないためstepと異なる値であることに注意)
+                    //の和より大きければ進みすぎなためomegaを1.0にして普通に進む
                     if (fail) 
                     {
                         step -= step * omega;
@@ -178,23 +217,29 @@ Shader "MetaBall/MetaBallSample2"
                     {
                         step = omega * radius;
                     }
+
                     previousradius = radius;
                     float pixelt = radius / t;
+                    //最もオブジェクトに近かった点を衝突点の候補とする
                     if (!fail && pixelt < minpixelt) 
                     {
                         minpixelt = pixelt;
                         mint = t;
                     }
+                    //最大距離に加えて「スクリーンに対するレイの進む半径の大きさ（すなわちpixelt）」が
+                    //ピクセルの大きさより小さいのならばループを終わってもよい
                     if (!fail && pixelt<pixelradius || t>maxdistance)
                     break;
                     t += step;
                 }
 
+                //スクリーンに対するレイの進む半径の大きさ（pixelt）」の最小値がピクセルの大きさより大きく、
+                //かつpixelt が一番小さい時のtの値mintが一定の値（ここではhit）より大きいときは当たっていない判定
                 if ((t > maxdistance || minpixelt > pixelradius) && (mint > hit)) 
                 {
                     return -1;
                 }
-                else    
+                else//スクリーンに対するレイの進む半径の大きさ（pixelt）」が一番小さかった時のt（すなわちpixelt が一番小さい時のtの値mint）を距離とする    
                 {
                     return mint;
                 }
@@ -207,7 +252,7 @@ Shader "MetaBall/MetaBallSample2"
             // https://www.shadertoy.com/view/Xds3zN
 
             //Tetrahedron technique  http://iquilezles.org/www/articles/normalsSDF/normalsSDF.htm
-            float3 getnormal(in float3 p)
+            float3 getnormal(float3 p)
             {
                 static const float2 e = float2(0.5773,-0.5773) * 0.0001;
                 float3 nor = normalize(e.xyy * dist(p + e.xyy) + e.yyx * dist(p + e.yyx) + e.yxy * dist(p + e.yxy) + e.xxx * dist(p + e.xxx));
@@ -239,12 +284,7 @@ Shader "MetaBall/MetaBallSample2"
 
             float4 material(float3 pos)
             {
-                float4 ballcol[6] = {float4(0.5,0,0,1),
-                                float4(0.0,0.5,0,1),
-                                float4(0,0,0.5,1),
-                                float4(0.25,0.25,0,1),
-                                float4(0.25,0,0.25,1),
-                                float4(0.0,0.25,0.25,1)};
+                float4 ballcol[6] = { _Color, _Color2, _Color3, _Color4, _Color5, _Color6};
                 float3 mate = float3(0,0,0);
                 float w = 0.01;
                 // Making ball color
@@ -319,10 +359,13 @@ Shader "MetaBall/MetaBallSample2"
             v2f vert(appdata v)
             {
                 v2f o;
+                //モデルスペースからクリップスペースへの変換
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                //モデルスペースからクリップスペースへの変換したxyzを渡す
                 o.pos = mul(unity_ObjectToWorld,v.vertex).xyz;
+                //uvを渡す
                 o.uv = v.uv;
-                UNITY_TRANSFER_FOG(o,o.vertex);
+
                 return o;
             }
 
@@ -335,20 +378,29 @@ Shader "MetaBall/MetaBallSample2"
 
             pout frag(v2f i)
             {
+                //視点の位置
                 float3 ro = mul(unity_WorldToObject,float4(_WorldSpaceCameraPos,1)).xyz;
+                //進む方向
                 float3 rd = normalize(mul(unity_WorldToObject,float4(i.pos,1)).xyz - mul(unity_WorldToObject,float4(_WorldSpaceCameraPos,1)).xyz);
+                //レイマーチング
                 float t = raymarch(ro,rd);
                 fixed4 col = 0;
 
-                if (t == -1) {
-                clip(-1);
+                if (t == -1) //レイが衝突しない場合
+                {
+                    //clipの引数に渡した値が0以下となった場合、描画しない
+                    clip(-1);
                 }
-                else {
-                float3 pos = ro + rd * t;
-                col = lighting(pos);
+                else
+                {
+                    //座標 = 視点の位置 * 進む方向 * レイマーチングの結果
+                    float3 pos = ro + rd * t;
+                    col = lighting(pos);
                 }
                 pout o;
+                //ピクセルに色を付ける
                 o.pixel = col;
+                //オブジェクト空間からカメラのクリップ空間へ変換
                 float4 curp = UnityObjectToClipPos(float4(ro + rd * t,1));
                 o.depth = (curp.z) / (curp.w); //Drawing depth
 
