@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/SampleShader.unity
+- path: Assets/Scenes/SampleCurve.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
