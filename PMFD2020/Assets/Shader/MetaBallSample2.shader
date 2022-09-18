@@ -9,20 +9,11 @@ Shader "MetaBall/MetaBallSample2"
         _Color4("Tint", Color) = (0.2, 0.3, 0.4, 1)
         _Color5("Tint", Color) = (0.2, 0.3, 0.4, 1)
         _Color6("Tint", Color) = (0.2, 0.3, 0.4, 1)
-        _DiffusePower("Diffuse Power", Float) = 3
-        _DiffuseLevels("DiffuseLevels", int) = 3
-        // Specular
-        _SpecColor("Specular", Color) = (0.4, 0.5, 0.6, 1)
-        _SpecPower("Specular Power", Float) = 3
-        _SpecAtten("Specular Attenuation", Range(0,1)) = 1
-        _SpecThreshold("Specular Threshold", Range(0,1)) = 0.4
-        // Edge
-        _EdgeColor("Edge Color", Color) = (0, 0, 0, 1)
-        _EdgeThreshold("Edge Threshold", Range(0,1)) = 0.2
-        // Radial Basis Function
-        _K("RadialBasis Constant", Float) = 7
-        _Threshold("Isosurface Threshold", Range(0,1)) = 0.5
-        _Epsilon("Normal Epsilon", Range(0,1)) = 0.1
+
+        //メタボールの数
+        _MetaballCount("metaballCount",int) = 6
+        
+        
 
         //床の高さ
         _ypos("floor height",float) = -0.25
@@ -41,29 +32,22 @@ Shader "MetaBall/MetaBallSample2"
 
             uniform float _ypos;
             
-           
-
-            float4 _Color;						// Diffuse Color.
+            //Diffuse Color.
+            float4 _Color;						
             float4 _Color2;
             float4 _Color3;
             float4 _Color4;
             float4 _Color5;
-            float4 _Color6;
-            float  _DiffusePower;				// Diffuse Power.
-            int _DiffuseLevels;
+            float4 _Color6;    
 
-            float4 _SpecColor;					// Specular Color.
-            float _SpecPower;					// Specular Power.
-            fixed _SpecAtten;					// Specular Scale.
-            fixed _SpecThreshold;				// Specular threshold.
+            //メタボールの数
+            int _MetaballCount;
 
-            float4 _EdgeColor;					// Edge Color.
-            fixed _EdgeThreshold;				// Edge threshold.
+            //場所
+            float4 _MPosition;
+            float4 _MPositions[6];//動的配列は使えない，長さを指定して宣言
 
-            float _K;                            // Radial basis function constant.
-            fixed _Threshold;                   //メタボールの半径
-            fixed _Epsilon;                     //正規分布
-
+            
             //Making noise
             float hash(float2 p)
             {
@@ -115,10 +99,13 @@ Shader "MetaBall/MetaBallSample2"
                 float kt = 3 * _Time.y * (0.1 + 0.01 * i);
                 //係数とノイズを利用してボールの座標を決定
                 //float3 ballpos = 0.3 * float3(noise(float2(i,i) + kt),noise(float2(i + 10,i * 20) + kt),noise(float2(i * 20,i + 20) + kt));
-                float3 ballpos = 0.3 * float3(noise(float2(i,i) + kt),noise(float2(i + 10,i * 20) + kt),noise(float2(i * 20,i + 20) + kt));
+                //float3 ballpos = 0.1 * float3(0.0f + i, 0.0f + i, 0.0f + i + kt);
+
+                float3 ballpos = 0.1 * float3(_MPosition[0] + i, _MPosition[1] + 0.5 * i, _MPosition[2] + 0.03 * i);
+
                 //係数とノイズを利用してボールのサイズを決定
-                //float scale = 0.05 + 0.02 * hash(float2(i,i));
                 float scale = 0.05 + 0.02 * hash(float2(i,i));
+                //float scale = 0.01 + 0.01 * hash(float2(i,i));
 
                 return  float4(ballpos,scale);
             }
@@ -165,10 +152,10 @@ Shader "MetaBall/MetaBallSample2"
             // Making distance function
             float dist(float3 p)
             {
-                float y = p.y;
+                //float y = p.y;
                 float d1 = metaball(p);
-                float d2 = y - (_ypos); //For floor
-                d1 = smoothMin(d1,d2,20);
+                //float d2 = y - (_ypos); //For floor
+                //d1 = smoothMin(d1,d2,20);
                 return d1;
             }
 
@@ -296,11 +283,13 @@ Shader "MetaBall/MetaBallSample2"
                     w += p;
                 }
                 // Making floor color
+                /*
                 float x = clamp((pos.y - _ypos) * 10,0,1);
                 float p = 1.0 - x * x * (3.0 - 2.0 * x);
                 mate += p * float3(0.2,0.2,0.2);
                 w += p;
                 mate /= w;
+                */
                 return float4(mate,1);
             }
             ////////////////////////////////////////////////////
