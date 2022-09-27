@@ -27,7 +27,22 @@ public class MakeDragonBone : MonoBehaviour
         new Vector3(3.81f, 0.5f, 0.0f),
         //尾 tail
         new Vector3(3.81f, 0.5f, 0.0f),
-        new Vector3(5.0f, -2.5f, 0.0f)
+        new Vector3(5.0f, -2.5f, 0.0f),
+        //上腕 upper_arm
+        /*-left-*/
+        /*-right-*/
+        //前腕 forearm
+        /*-left-*/
+        /*-right-*/
+        //大腿 thigh
+        /*-left-*/
+        /*-right-*/
+        //下腿 lower_leg
+        /*-left-*/
+        /*-right-*/
+        //足 foot
+        /*-left-*/
+        /*-right-*/
     };
 
     //端点での速度
@@ -46,6 +61,41 @@ public class MakeDragonBone : MonoBehaviour
         new Vector3(1.0f, 0.0f, 0.0f),
         //尾 tail
         new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //上腕 upper_arm
+        /*-left-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        /*-right-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //前腕 forearm
+        /*-left-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        /*-right-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //大腿 thigh
+        /*-left-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        /*-right-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //下腿 lower_leg
+        /*-left-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        /*-right-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //足 foot
+        /*-left-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        /*-right-*/
+        new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f)
     };
 
@@ -61,6 +111,31 @@ public class MakeDragonBone : MonoBehaviour
         //胴体 body
         1.0f,1.0f,
         //尾 tail
+        1.0f,1.0f,
+        //上腕 upper_arm
+        /*-left-*/
+        1.0f,1.0f,
+        /*-right-*/
+        1.0f,1.0f,
+        //前腕 forearm
+        /*-left-*/
+        1.0f,1.0f,
+        /*-right-*/
+        1.0f,1.0f,
+        //大腿 thigh
+        /*-left-*/
+        1.0f,1.0f,
+        /*-right-*/
+        1.0f,1.0f,
+        //下腿 lower_leg
+        /*-left-*/
+        1.0f,1.0f,
+        /*-right-*/
+        1.0f,1.0f,
+        //足 foot
+        /*-left-*/
+        1.0f,1.0f,
+        /*-right-*/
         1.0f,1.0f
     };
 
@@ -76,6 +151,31 @@ public class MakeDragonBone : MonoBehaviour
         //胴体 body
         0.0f,0.0f,
         //尾 tail
+        0.0f,0.0f,
+        //上腕 upper_arm
+        /*-left-*/
+        0.0f,0.0f,
+        /*-right-*/
+        0.0f,0.0f,
+        //前腕 forearm
+        /*-left-*/
+        0.0f,0.0f,
+        /*-right-*/
+        0.0f,0.0f,
+        //大腿 thigh
+        /*-left-*/
+        0.0f,0.0f,
+        /*-right-*/
+        0.0f,0.0f,
+        //下腿 lower_leg
+        /*-left-*/
+        0.0f,0.0f,
+        /*-right-*/
+        0.0f,0.0f,
+        //足 foot
+        /*-left-*/
+        0.0f,0.0f,
+        /*-right-*/
         0.0f,0.0f
     };
 
@@ -171,7 +271,7 @@ public class MakeDragonBone : MonoBehaviour
 
         ///////////////////////////////////////////////////////////////////
         // LineRendererコンポーネントをゲームオブジェクトにアタッチする
-        //lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
 
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
