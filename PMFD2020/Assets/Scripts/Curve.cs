@@ -46,6 +46,7 @@ public class Curve : MonoBehaviour
 
     // 曲線の端点の張り
     float[] tension = { 1.0f, 1.0f };
+    // 曲線の端点の方向
     float[] direction = { 0.0f, 0.0f };
 
     // 曲線の節点数
