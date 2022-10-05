@@ -52,12 +52,12 @@ public class StartPositionXvalue : MonoBehaviour
 
         curveSlider = this.GetComponent<Slider>();
         //スライダーの値を設定
-        float valueMax = 2.0f;
-        float valueMin = -2.0f;
+        float valueMax = 5.0f;
+        float valueMin = -5.0f;
 
         curveSlider.maxValue = valueMax;
         curveSlider.minValue = valueMin;
-        curveSlider.value = -1.0f;
+        curveSlider.value = 0.0f;
 
         //値を渡す
         throwValue = curveSlider.value;
