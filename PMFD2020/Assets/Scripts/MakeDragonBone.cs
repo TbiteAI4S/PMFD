@@ -275,7 +275,7 @@ public class MakeDragonBone : MonoBehaviour
 
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        int a = 4;
+        int a = 3;
         // 点の数を指定する
         lineRenderer.positionCount = dragonbone[a].Length;
         // 線を引く場所を指定する
@@ -286,11 +286,12 @@ public class MakeDragonBone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int b = 6;
         //スライダーからのデータの更新
-        tension[8] = cm.nowtension[0];
-        direction[8] = cm.nowdirection[0];
-        tension[9] = cm.nowtension[1];
-        direction[9] = cm.nowdirection[1];
+        tension[b] = cm.nowtension[0];
+        direction[b] = cm.nowdirection[0];
+        tension[b+1] = cm.nowtension[1];
+        direction[b+1] = cm.nowdirection[1];
 
         //各パーツでドラゴンボーン作成
         makebone(dragonbone);
@@ -299,7 +300,7 @@ public class MakeDragonBone : MonoBehaviour
         ///////////////////////////////////////////////////////////////////
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        int a = 4;
+        int a = 3;
         // 点の数を指定する
         lineRenderer.positionCount = dragonbone[a].Length;
         // 線を引く場所を指定する
