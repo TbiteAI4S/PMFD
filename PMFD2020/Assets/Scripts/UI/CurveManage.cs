@@ -18,8 +18,8 @@ public class CurveManage : MonoBehaviour
     /*---スライダーの値---*/
     //曲線の端点の位置
     public Vector3[] nowPostion = {
-        new Vector3(-1.0f, -1.0f, 0.0f),
-        new Vector3(1.0f, 1.0f, 0.0f)
+        new Vector3(0.0f, 0.0f, 0.0f),
+        new Vector3(0.0f, 0.0f, 0.0f)
     };
 
     //曲線の端点の張り

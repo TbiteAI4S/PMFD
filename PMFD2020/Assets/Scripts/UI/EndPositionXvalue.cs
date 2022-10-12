@@ -33,7 +33,7 @@ public class EndPositionXvalue : MonoBehaviour
 
         curveSlider.maxValue = valueMax;
         curveSlider.minValue = valueMin;
-        curveSlider.value = 1.0f;
+        curveSlider.value = 0.0f;
 
         //値を渡す
         throwValue = curveSlider.value;
