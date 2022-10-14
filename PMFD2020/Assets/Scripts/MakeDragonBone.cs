@@ -15,34 +15,36 @@ public class MakeDragonBone : MonoBehaviour
     {
         //頭(上あご) head
         new Vector3(-6.31f, 2.29f, 0.0f),
-        new Vector3(-4.35f, 3.55f, 0.0f),
+        new Vector3(-4.58f, 4.16f, 0.0f),
         //下顎 jaw
         new Vector3(-1.77f, 1.54f, 0.0f),
-        new Vector3(-1.14f, 2.62f, 0.0f),
+        new Vector3(-4.66f, 3.23f, 0.0f),
         //首 neck
-        new Vector3(-1.14f, 2.62f, 0.0f),
-        new Vector3(-0.13f, 0.09f, 0.0f),
+        new Vector3(-4.35f, 3.55f, 0.0f),
+        new Vector3(-2.25f, -1.09f, 0.0f),
         //胴体 body
-        new Vector3(-0.13f, 0.09f, 0.0f),
-        new Vector3(3.81f, 0.5f, 0.0f),
+        new Vector3(-2.25f, -1.09f, 0.0f),
+        new Vector3(5.06f, -0.48f, 0.0f),
         //尾 tail
-        new Vector3(3.81f, 0.5f, 0.0f),
-        new Vector3(5.0f, -2.5f, 0.0f),
+        new Vector3(5.06f, -0.48f, 0.0f),
+        new Vector3(12.84f, -0.87f, 0.0f),
+
+        /* 左側 */
         //左上腕 left_upper_arm
-        new Vector3(-1.45f,-1.83f,0.0f),
-        new Vector3(-1.14f,-3.73f,0.0f),
+        new Vector3(-1.45f, -1.83f, 0.0f),
+        new Vector3(-1.14f, -3.73f, 0.0f),
         //左前腕 left_forearm
-        new Vector3(-1.14f,-3.73f,0.0f),
-        new Vector3(-2.79f,-5.23f,0.0f),
-        //大腿 thigh
-        /*-left-*/
-        /*-right-*/
-        //下腿 lower_leg
-        /*-left-*/
-        /*-right-*/
-        //足 foot
-        /*-left-*/
-        /*-right-*/
+        new Vector3(-1.14f, -3.73f, 0.0f),
+        new Vector3(-2.79f, -5.23f, 0.0f),
+        //左大腿 left_thigh
+        new Vector3(4.28f, -1.58f, 0.0f),
+        new Vector3(4.51f, -3.22f, 0.0f),
+        //左下腿 left_lower_leg
+        new Vector3(4.51f, -3.22f, 0.0f),
+        new Vector3(4.28f, -4.74f, 0.0f),
+        //左足 left_foot
+        new Vector3(4.28f, -4.74f, 0.0f),
+        new Vector3(2.85f, -5.42f, 0.0f)
     };
 
     //端点での速度
@@ -62,39 +64,38 @@ public class MakeDragonBone : MonoBehaviour
         //尾 tail
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //上腕 upper_arm
-        /*-left-*/
+
+        /* 左側 */
+        //上腕 left_upper_arm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        /*-right-*/
+        //前腕 left_forearm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //前腕 forearm
-        /*-left-*/
+        //大腿 left_thigh
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        /*-right-*/
+        //下腿 left_lower_leg
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //大腿 thigh
-        /*-left-*/
+        //足 left_foot
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        /*-right-*/
+
+        /* 右側 */
+        //上腕 right_upper_arm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //下腿 lower_leg
-        /*-left-*/
+        //前腕 right_forearm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        /*-right-*/
+        //大腿 right_thigh
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //足 foot
-        /*-left-*/
+        //下腿 right__lower_leg
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        /*-right-*/
+        //足 right_foot
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f)
     };
@@ -112,30 +113,29 @@ public class MakeDragonBone : MonoBehaviour
         1.0f,1.0f,
         //尾 tail
         1.0f,1.0f,
-        //上腕 upper_arm
-        /*-left-*/
+
+        /* 左側 */
+        //上腕 left_upper_arm
         1.0f,1.0f,
-        /*-right-*/
+        //前腕 left_forearm
         1.0f,1.0f,
-        //前腕 forearm
-        /*-left-*/
+        //大腿 left_thigh
         1.0f,1.0f,
-        /*-right-*/
+        //下腿 left_lower_leg
         1.0f,1.0f,
-        //大腿 thigh
-        /*-left-*/
+        //足 left_foot
         1.0f,1.0f,
-        /*-right-*/
+
+        /* 右側 */
+        //上腕 right_upper_arm
         1.0f,1.0f,
-        //下腿 lower_leg
-        /*-left-*/
+        //前腕 right_forearm
         1.0f,1.0f,
-        /*-right-*/
+        //大腿 right_thigh
         1.0f,1.0f,
-        //足 foot
-        /*-left-*/
+        //下腿 right_lower_leg
         1.0f,1.0f,
-        /*-right-*/
+        //足 right_foot
         1.0f,1.0f
     };
 
@@ -152,35 +152,34 @@ public class MakeDragonBone : MonoBehaviour
         0.0f,0.0f,
         //尾 tail
         0.0f,0.0f,
-        //上腕 upper_arm
-        /*-left-*/
+
+        /* 左側 */
+        //上腕 left_upper_arm
         0.0f,0.0f,
-        /*-right-*/
+        //前腕 left_forearm
         0.0f,0.0f,
-        //前腕 forearm
-        /*-left-*/
+        //大腿 left_thigh
         0.0f,0.0f,
-        /*-right-*/
+        //下腿 left_lower_leg
         0.0f,0.0f,
-        //大腿 thigh
-        /*-left-*/
+        //足 left_foot
         0.0f,0.0f,
-        /*-right-*/
+
+        /* 右側 */
+        //上腕 right_upper_arm
         0.0f,0.0f,
-        //下腿 lower_leg
-        /*-left-*/
+        //前腕 right_forearm
         0.0f,0.0f,
-        /*-right-*/
+        //大腿 right_thigh
         0.0f,0.0f,
-        //足 foot
-        /*-left-*/
+        //下腿 right_lower_leg
         0.0f,0.0f,
-        /*-right-*/
+        //足 right_foot
         0.0f,0.0f
     };
 
     //ドラゴンボーンの分割数
-    int step = 10;
+    const int step = 10;
 
     //ドラゴンボーン
     public Vector3[][] dragonbone;
@@ -199,7 +198,10 @@ public class MakeDragonBone : MonoBehaviour
     /*-----関数-----*/
 
     //ドラゴンボーンの作成
-    void makebone(Vector3[][] boneArray)
+    /*
+     * velocityを計算して曲線を作りboneArrayに渡す
+     */
+    public void makebone(Vector3[][] boneArray)
     {
         for (int j = 0; j < 10; j = j + 2)
         {
@@ -221,7 +223,10 @@ public class MakeDragonBone : MonoBehaviour
     }
 
     //ドラゴンボーンの更新
-    void updatemakebone(Vector3 update_start, Vector3 update_end, Vector3[][] boneArray)
+    /*
+     * 変化した端点と再計算したvelocityで曲線を作りboneArrayに渡す
+     */
+    public void updatemakebone(Vector3 update_start, Vector3 update_end, Vector3[][] boneArray)
     {
         for (int j = 0; j < 10; j = j + 2)
         {
@@ -318,7 +323,7 @@ public class MakeDragonBone : MonoBehaviour
         direction[b+1] = cm.nowdirection[1];
 
         //各パーツでドラゴンボーン作成
-        updatemakebone(start, end,dragonbone);
+        updatemakebone(start, end, dragonbone);
 
 
         ///////////////////////////////////////////////////////////////////
