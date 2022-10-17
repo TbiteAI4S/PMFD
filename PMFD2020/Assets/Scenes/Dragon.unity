@@ -1057,8 +1057,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351173971}
+  - component: {fileID: 351173972}
   m_Layer: 0
-  m_Name: CheckDragonJawNeck
+  m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,6 +1079,18 @@ Transform:
   m_Father: {fileID: 541613438}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351173972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351173970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e650cd9c6e307458548148c3129926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &364735917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,7 +2565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &759414505
 Transform:
   m_ObjectHideFlags: 0
@@ -2905,8 +2918,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 853084472}
+  - component: {fileID: 853084473}
   m_Layer: 0
-  m_Name: CheckDragonJawBody
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2926,6 +2940,18 @@ Transform:
   m_Father: {fileID: 541613438}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &853084473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853084471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76835f15fcee5164c8252eb6051eec48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858833041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,8 +3893,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129846578}
+  - component: {fileID: 1129846579}
   m_Layer: 0
-  m_Name: CheckDragonHead
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3888,6 +3915,18 @@ Transform:
   m_Father: {fileID: 541613438}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129846579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129846577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097f5ffa1a9eb504fb7b7aabb9d68743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137887150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,8 +4262,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1211213742}
+  - component: {fileID: 1211213743}
   m_Layer: 0
-  m_Name: CheckDragonJawBodyTail
+  m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4244,6 +4284,18 @@ Transform:
   m_Father: {fileID: 541613438}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211213743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211213741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9c2203392615c4b98116e18bb3fcd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1213227155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,8 +4305,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1213227156}
+  - component: {fileID: 1213227157}
   m_Layer: 0
-  m_Name: CheckDragonJaw
+  m_Name: Jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4274,6 +4327,18 @@ Transform:
   m_Father: {fileID: 541613438}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1213227157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213227155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23b0c776d4d245449e5e693179311b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263386644
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class MakeDragonBone : MonoBehaviour
         new Vector3(-6.31f, 2.29f, 0.0f),
         new Vector3(-4.58f, 4.16f, 0.0f),
         //下顎 jaw
-        new Vector3(-1.77f, 1.54f, 0.0f),
+        new Vector3(-5.47f, 1.69f, 0.0f),
         new Vector3(-4.66f, 3.23f, 0.0f),
         //首 neck
         new Vector3(-4.35f, 3.55f, 0.0f),
@@ -203,7 +203,7 @@ public class MakeDragonBone : MonoBehaviour
      */
     public void makebone(Vector3[][] boneArray)
     {
-        for (int j = 0; j < 10; j = j + 2)
+        for (int j = 0; j < 20; j = j + 2)
         {
             //ドラゴンボーン作成
             velocity[j].x = tension[j] * Mathf.Cos(direction[j]);
@@ -228,7 +228,7 @@ public class MakeDragonBone : MonoBehaviour
      */
     public void updatemakebone(Vector3 update_start, Vector3 update_end, Vector3[][] boneArray)
     {
-        for (int j = 0; j < 10; j = j + 2)
+        for (int j = 0; j < 20; j = j + 2)
         {
             //ドラゴンボーン作成
             velocity[j].x = tension[j] * Mathf.Cos(direction[j]);
@@ -254,7 +254,7 @@ public class MakeDragonBone : MonoBehaviour
         mat = _renderer.material;
 
         //ボーンの座標をシェーダーに渡す形に変換
-        Vector3[] throwpoints = new Vector3[25];
+        Vector3[] throwpoints = new Vector3[50];
         int throwNum = 0;
 
         for (int i = 0; i < dragonbone.Length; i++)//パーツの数だけ
@@ -277,6 +277,8 @@ public class MakeDragonBone : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////////////////////
 
+    int aa = 8;
+    int bb = 16;
 
     // Start is called before the first frame update
     void Start()
@@ -288,52 +290,55 @@ public class MakeDragonBone : MonoBehaviour
         curvescript = GameObject.Find("Curve").GetComponent<Curve>();
 
         //配列の初期化
-        dragonbone = new Vector3[5][];
+        dragonbone = new Vector3[10][];
 
         //各パーツでドラゴンボーン作成
         makebone(dragonbone);
 
         //シェーダーに渡す
-        BoneDataToShader();
+        //BoneDataToShader();
 
         ///////////////////////////////////////////////////////////////////
+        
         // LineRendererコンポーネントをゲームオブジェクトにアタッチする
         lineRenderer = gameObject.AddComponent<LineRenderer>();
 
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        int a = 0;
         // 点の数を指定する
-        lineRenderer.positionCount = dragonbone[a].Length;
+        lineRenderer.positionCount = dragonbone[aa].Length;
         // 線を引く場所を指定する
-        lineRenderer.SetPositions(dragonbone[a]);
+        lineRenderer.SetPositions(dragonbone[aa]);
+        
         /////////////////////////////////////////////////////////////////
     }
 
     // Update is called once per frame
     void Update()
     {
-        int b = 0;
+        
         //スライダーからのデータの更新
         Vector3 start = cm.nowPostion[0];
         Vector3 end = cm.nowPostion[1];
-        tension[b] = cm.nowtension[0];
-        direction[b] = cm.nowdirection[0];
-        tension[b+1] = cm.nowtension[1];
-        direction[b+1] = cm.nowdirection[1];
+        tension[bb] = cm.nowtension[0];
+        direction[bb] = cm.nowdirection[0];
+        tension[bb+1] = cm.nowtension[1];
+        direction[bb+1] = cm.nowdirection[1];
 
         //各パーツでドラゴンボーン作成
         updatemakebone(start, end, dragonbone);
 
 
         ///////////////////////////////////////////////////////////////////
+        
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
-        int a = 0;
+        
         // 点の数を指定する
-        lineRenderer.positionCount = dragonbone[a].Length;
+        lineRenderer.positionCount = dragonbone[aa].Length;
         // 線を引く場所を指定する
-        lineRenderer.SetPositions(dragonbone[a]);
+        lineRenderer.SetPositions(dragonbone[aa]);
+        
         ///////////////////////////////////////////////////////////////////
         
     }

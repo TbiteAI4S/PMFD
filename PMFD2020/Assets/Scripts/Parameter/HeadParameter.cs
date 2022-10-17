@@ -17,7 +17,7 @@ public class HeadParameter : MonoBehaviour
         new Vector3(-6.31f, 2.29f, 0.0f),
         new Vector3(-4.58f, 4.16f, 0.0f),
         //下顎 jaw
-        new Vector3(-1.77f, 1.54f, 0.0f),
+        new Vector3(-5.47f, 1.69f, 0.0f),
         new Vector3(-4.66f, 3.23f, 0.0f),
         //首 neck
         new Vector3(-4.35f, 3.55f, 0.0f),
