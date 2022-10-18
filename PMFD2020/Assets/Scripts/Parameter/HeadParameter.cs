@@ -36,10 +36,14 @@ public class HeadParameter : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             head_baseposition[i] = dbd.baseposition[i];
-            
+            head_basetension[i] = dbd.basetension[i];
+            head_basevelocity[i] = dbd.basedirection[i];
             head_minposition[i] = dbd.minposition[i];
-
+            head_mintension[i] = dbd.mintension[i];
+            head_minvelocity[i] = dbd.mindirection[i];
             head_maxposition[i] = dbd.maxposition[i];
+            head_maxtension[i] = dbd.maxtension[i];
+            head_maxvelocity[i] = dbd.maxdirection[i];
         }
     }
 

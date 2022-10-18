@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,10 +118,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 939
-  m_MinSize: {x: 707, y: 471}
+  m_MinSize: {x: 708, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 1
-  controlID: 107
+  controlID: 139
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 939
-  m_MinSize: {x: 707, y: 471}
+  m_MinSize: {x: 708, y: 471}
   m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
-  controlID: 108
+  controlID: 140
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 961
     height: 939
-  m_MinSize: {x: 200, y: 321}
-  m_MaxSize: {x: 4001, y: 8021}
+  m_MinSize: {x: 201, y: 442}
+  m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 138
+  controlID: 150
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -221,14 +221,14 @@ MonoBehaviour:
     y: 484
     width: 961
     height: 455
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
   - {fileID: 19}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -459,9 +459,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.7042103, y: 0.8743725, z: 1.20643}
+    m_Target: {x: 0.020537376, y: 0.562063, z: -0.66227674}
     speed: 2
-    m_Value: {x: -4.7042103, y: 0.8743725, z: 1.20643}
+    m_Value: {x: 0.020537376, y: 0.562063, z: -0.66227674}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -508,9 +508,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.13483572, y: 0.030313846, z: -0.0041224384, w: -0.99040675}
+    m_Target: {x: -0.11792987, y: -0.18447472, z: 0.02230746, w: -0.9754933}
     speed: 2
-    m_Value: {x: -0.13483423, y: 0.03031351, z: -0.0041223927, w: -0.9903958}
+    m_Value: {x: -0.117928505, y: -0.18447259, z: 0.022307202, w: -0.97548205}
   m_Size:
     m_Target: 4.5980463
     speed: 2
@@ -706,9 +706,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8c460000
-      m_LastClickedID: 18060
-      m_ExpandedIDs: 2ef6ffff9cf6ffffbcf6ffff6cfbffff3e450000
+      m_SelectedIDs: a40b0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 38faffff7afaffff92faffff6cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -770,22 +770,22 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/beforescripts
+    - Assets/Scripts/Parameter
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/beforescripts
+  - Assets/Scripts/Parameter
   m_LastFoldersGridSize: 16
   m_LastProjectPath: M:\GitHub\PMFD\PMFD2020
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 10410000
-    m_LastClickedID: 16656
-    m_ExpandedIDs: 00000000004100000a41000000ca9a3b
+    m_SelectedIDs: 663e0000
+    m_LastClickedID: 15974
+    m_ExpandedIDs: 00000000543e00005e3e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -813,7 +813,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000000410000
+    m_ExpandedIDs: 00000000543e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -844,18 +844,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 60370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Dragon
+      m_OriginalName: Dragon
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 15998
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
