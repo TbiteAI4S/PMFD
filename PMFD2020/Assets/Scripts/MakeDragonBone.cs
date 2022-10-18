@@ -277,8 +277,8 @@ public class MakeDragonBone : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////////////////////
 
-    int aa = 8;
-    int bb = 16;
+    int aa = 2;
+    int bb = 4;
 
     // Start is called before the first frame update
     void Start()
