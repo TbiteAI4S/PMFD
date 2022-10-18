@@ -11,7 +11,7 @@ public class DragonBorneData : MonoBehaviour
 {
     /* ベースのドラゴンボーン */
     //座標
-    Vector3[] baseposition =
+    public Vector3[] baseposition =
     {
         //頭(上あご) head
         new Vector3(-6.31f, 2.29f, 0.0f),
@@ -47,7 +47,7 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(2.85f, -5.42f, 0.0f)
     };
     //張り
-    float[] basetension =
+    public float[] basetension =
     {   /* 始点, 終点 */
         
         //頭(上あご) head
@@ -75,7 +75,7 @@ public class DragonBorneData : MonoBehaviour
 
     };
     //方向
-    float[] basedirection =
+    public float[] basedirection =
     {   /* 始点, 終点 */
 
         //頭(上あご) head
@@ -103,7 +103,7 @@ public class DragonBorneData : MonoBehaviour
     };
 
     /* ドラゴンボーンの最小値 */
-    Vector3[] minposition =
+    public Vector3[] minposition =
     {
         //頭(上あご) head
         new Vector3(-6.31f, 2.29f, 0.0f),
@@ -139,7 +139,7 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(2.85f, -5.42f, 0.0f)
     };
     //張り
-    float[] mintension =
+    public float[] mintension =
     {   /* 始点, 終点 */
         
         //頭(上あご) head
@@ -166,7 +166,7 @@ public class DragonBorneData : MonoBehaviour
         1.0f,1.0f,
     };
     //方向
-    float[] mindirection =
+    public float[] mindirection =
     {   /* 始点, 終点 */
 
         //頭(上あご) head
@@ -195,7 +195,7 @@ public class DragonBorneData : MonoBehaviour
     };
 
     /* ドラゴンボーンの最大値 */
-    Vector3[] maxposition =
+    public Vector3[] maxposition =
     {
         //頭(上あご) head
         new Vector3(-6.31f, 2.29f, 0.0f),
@@ -231,7 +231,7 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(2.85f, -5.42f, 0.0f)
     };
     //張り
-    float[] maxtension =
+    public float[] maxtension =
     {   /* 始点, 終点 */
         
         //頭(上あご) head
@@ -258,7 +258,7 @@ public class DragonBorneData : MonoBehaviour
         1.0f,1.0f,
     };
     //方向
-    float[] maxdirection =
+    public float[] maxdirection =
     {   /* 始点, 終点 */
 
         //頭(上あご) head
