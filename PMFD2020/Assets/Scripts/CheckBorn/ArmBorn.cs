@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ArmBorn : MonoBehaviour
 {
@@ -25,9 +26,11 @@ public class ArmBorn : MonoBehaviour
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
 
+        Vector3[] dbone = mbd.dragonbone[bornNum].Concat(mbd.dragonbone[bornNum + 1]).ToArray();
+
         // 点の数を指定する
-        lineRenderer.positionCount = mbd.dragonbone[bornNum].Length;
+        lineRenderer.positionCount = mbd.dragonbone[bornNum].Length + mbd.dragonbone[bornNum + 1].Length;
         // 線を引く場所を指定する
-        lineRenderer.SetPositions(mbd.dragonbone[bornNum]);
+        lineRenderer.SetPositions(dbone);
     }
 }
