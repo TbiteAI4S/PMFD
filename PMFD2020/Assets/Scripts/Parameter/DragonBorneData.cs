@@ -27,7 +27,7 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(5.1f, -0.5f, 0.0f),
         //尾 tail
         new Vector3(5.1f, -0.5f, 0.0f),
-        new Vector3(12.8f, -0.9f, 0.0f),
+        new Vector3(10.8f, -0.9f, 0.0f),
 
         /* 左側 */
         //左上腕 left_upper_arm
@@ -119,7 +119,7 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(4.1f, -0.5f, 0.0f),
         //尾 tail
         new Vector3(5.1f, -0.5f, 0.0f),
-        new Vector3(12.8f, -0.9f, 0.0f),
+        new Vector3(9.0f, -0.9f, 0.0f),
 
         /* 左側 */
         //左上腕 left_upper_arm
