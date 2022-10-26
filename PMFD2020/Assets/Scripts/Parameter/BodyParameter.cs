@@ -270,12 +270,14 @@ public class BodyParameter : MonoBehaviour
                 Debug.Log("parameterNumが正常入力でない");
                 break;
         }
+        /*
         for (int i = 4; i < 6; i++)
         {
             Debug.Log("body_position[" + i + "]"+body_position[i]);
             Debug.Log("body_tension[" + i + "]" + body_tension[i]);
             Debug.Log("body_direction[" + i + "]" + body_direction[i]);
         }
+        */
         //胴体の変形を補正
         for (int i = 4; i < 6; i++)
         {
@@ -336,6 +338,7 @@ public class BodyParameter : MonoBehaviour
 
         //胴体の長さを取得
         Vector3 bodylong = body_position[4] - dbd.nomalposition[8];
+        Debug.Log("bodylong" + bodylong);
 
         //尾の長さを変える
         change_tail(dbd.nomalposition, dbd.nomaltension, dbd.nomaldirection, dbd.maxposition,
