@@ -14,6 +14,7 @@ public class MakeDragonBone : MonoBehaviour
     /* パラメータ */
     HeadParameter headParameter;
     BodyParameter bodyParameter;
+    ArmParameter armParameter;
 
 
     /*----ドラゴンボーンのデータ----*/
@@ -275,6 +276,7 @@ public class MakeDragonBone : MonoBehaviour
         //パラメータスクリプトの取得
         headParameter = GameObject.Find("headPanel").GetComponent<HeadParameter>();
         bodyParameter = GameObject.Find("bodyPanel").GetComponent<BodyParameter>();
+        armParameter = GameObject.Find("armPanel").GetComponent<ArmParameter>();
 
         //配列の初期化
         dragonbone = new Vector3[10][];
@@ -297,13 +299,20 @@ public class MakeDragonBone : MonoBehaviour
             direction[i] = headParameter.head_direction[i];
         }
         //BodyParameterの更新
-        
         for (int i = 0; i < 6; i++)
         {
             int k = i + 4;
             position[k] = bodyParameter.body_position[i];
             tension[k] = bodyParameter.body_tension[i];
             direction[k] = bodyParameter.body_direction[i];
+        }
+        //ArmParameterの更新
+        for (int i = 0; i < 4; i++)
+        {
+            int k = i + 10;
+            position[k] = armParameter.left_arm_position[i];
+            tension[k] = armParameter.arm_tension[i];
+            direction[k] = armParameter.arm_direction[i];
         }
 
         //ドラゴンボーンを作る

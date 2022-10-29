@@ -337,8 +337,7 @@ public class BodyParameter : MonoBehaviour
         change_bodyback(dbd.nomaltension, dbd.nomaldirection, dbd.maxtension, dbd.maxdirection, dbd.mintension, dbd.mindirection, check_bodyback);
 
         //胴体の長さを取得
-        Vector3 bodylong = body_position[4] - dbd.nomalposition[8];
-        Debug.Log("bodylong" + bodylong);
+        Vector3 bodylong = body_position[3] - dbd.nomalposition[7];
 
         //尾の長さを変える
         change_tail(dbd.nomalposition, dbd.nomaltension, dbd.nomaldirection, dbd.maxposition,

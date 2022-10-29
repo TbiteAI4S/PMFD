@@ -30,19 +30,19 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(10.8f, -0.9f, 0.0f),
 
         /* 左側 */
-        //左上腕 left_upper_arm
+        //上腕 upper_arm
         new Vector3(-1.2f, -1.8f, 0.0f),
         new Vector3(-1.1f, -3.7f, 0.0f),
-        //左前腕 left_forearm
+        //前腕 forearm
         new Vector3(-1.1f, -3.7f, 0.0f),
         new Vector3(-2.8f, -5.2f, 0.0f),
-        //左大腿 left_thigh
+        //大腿 thigh
         new Vector3(4.3f, -1.6f, 0.0f),
         new Vector3(4.5f, -3.2f, 0.0f),
-        //左下腿 left_lower_leg
+        //下腿 lower_leg
         new Vector3(4.5f, -3.2f, 0.0f),
         new Vector3(4.3f, -4.7f, 0.0f),
-        //左足 left_foot
+        //足 foot
         new Vector3(4.3f, -4.7f, 0.0f),
         new Vector3(2.9f, -5.4f, 0.0f)
     };
@@ -62,15 +62,15 @@ public class DragonBorneData : MonoBehaviour
         1.0f,1.0f,
 
         /* 左側 */
-        //上腕 left_upper_arm
+        //上腕 upper_arm
         3.2f,-0.2f,
-        //前腕 left_forearm
+        //前腕 forearm
         1.0f,1.0f,
-        //大腿 left_thigh
+        //大腿 thigh
         3.7f,0.6f,
-        //下腿 left_lower_leg
+        //下腿 lower_leg
         1.0f,-0.6f,
-        //足 left_foot
+        //足 foot
         1.0f,1.0f,
 
     };
