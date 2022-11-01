@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/DragonBone.unity
+- path: Assets/Scenes/SampleShader.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
