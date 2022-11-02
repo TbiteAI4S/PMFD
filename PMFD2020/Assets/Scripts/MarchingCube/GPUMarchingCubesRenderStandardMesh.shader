@@ -503,6 +503,5 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             ENDCG
         }
     }
-
     FallBack "Diffuse"
 }

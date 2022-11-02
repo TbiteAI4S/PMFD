@@ -165,11 +165,47 @@ public class MakeDragonBone : MonoBehaviour
         0.0f,0.0f,
     };
 
+    Vector3[] wing_position =
+    {
+         //翼の上腕
+        new Vector3(-1.2f,-0.2f,0.0f),
+        new Vector3(-0.2f,2.9f,0.0f),
+        new Vector3(-1.4f,5.2f,0.0f),
+
+    };
+
+    //端点での速度
+    Vector3[] wing_velocity =
+    {
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+    };
+
+    //張り
+    float[] wing_tension =
+    {   /* 始点, 終点 */
+        
+        //翼の上腕
+        1.0f,1.0f,
+        1.0f,1.0f,
+    };
+
+    //方向
+    float[] wing_direction =
+    {
+        /* 始点, 終点 */
+
+        //翼の上腕
+        0.0f,0.0f,
+        0.0f,0.0f,
+    };
+
     //ドラゴンボーンの分割数
     const int step = 10;
 
     //ドラゴンボーン
     public Vector3[][] dragonbone;
+    public Vector3[][] wing_dragonbone;
 
     //マテリアル
     private Material mat;
