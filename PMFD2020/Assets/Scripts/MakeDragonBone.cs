@@ -316,6 +316,7 @@ public class MakeDragonBone : MonoBehaviour
 
         //配列の初期化
         dragonbone = new Vector3[10][];
+        wing_dragonbone = new Vector3[5][];
 
         //各パーツでドラゴンボーン作成
         makebone(dragonbone);
