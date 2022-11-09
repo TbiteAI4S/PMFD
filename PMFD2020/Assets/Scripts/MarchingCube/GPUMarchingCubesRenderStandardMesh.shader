@@ -21,7 +21,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         Tags{ "RenderType" = "Opaque" }
 
         CGINCLUDE
-        #define UNITY_PASS_DEFERRED
+        //#define UNITY_PASS_DEFERRED
         #include "HLSLSupport.cginc"
         #include "UnityShaderVariables.cginc"
         #include "UnityCG.cginc"
@@ -80,47 +80,6 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         StructuredBuffer<float3> edgeDirection;
         StructuredBuffer<int> triangleConnectionTable;
 
-        // 応用編：カイワレ用距離関数
-        float DistanceFuncKaiware(float3 pos, float scale)
-        {
-            float3 p = pos;
-
-            // スケール
-            p = p / scale;
-
-            // 頭部
-            float d1 = roundBox(p, float3(1, 0.8, 1), 0.1);
-
-            // くちばし
-            float d2_0 = roundBox(p - float3(0, -0.2, 0.7), float3(0.8, 0.25, 0.3), 0.1);
-            float d2_1 = box(p - float3(0, -0.0, 0.7), float3(1.1, 0.35, 1.1));	// 上半分
-            float d2_2 = box(p - float3(0, -0.4, 0.7), float3(1.1, 0.35, 1.1));	// 下半分
-            float d2_3 = roundBox(p - float3(0, -0.2, 0.7), float3(0.75, 0.1, 0.25), 0.1);	// 溝
-
-            float d2_top = max(d2_0, d2_1);
-            float d2_bottom = max(d2_0, d2_2);
-            float d2 = min(min(d2_top, d2_bottom), d2_3);
-
-            // はっぱの茎
-            float d3_0 = Capsule(p, float3(0, 0.5, 0), float3(0, 0.75, 0), 0.05);
-            // 葉っぱ
-            float d3_1 = ellipsoid(p - float3(0.2, 0.75, 0), float3(0.25, 0.025, 0.1));
-            float d3_2 = ellipsoid(p - float3(-0.2, 0.75, 0), float3(0.25, 0.025, 0.1));
-            float d3 = min(d3_0, min(d3_1, d3_2));
-
-            // 目
-            float d4_0 = Capsule(p, float3(0.2, 0.25, 0.6), float3(0.4, 0.2, 0.6), 0.03);
-            float d4_1 = Capsule(p, float3(-0.2, 0.25, 0.6), float3(-0.4, 0.2, 0.6), 0.03);
-            float d4 = min(d4_0, d4_1);
-
-            // 合成
-            float sum = max(min(min(d1, d2), d3), -d4);
-
-            sum *= scale;
-
-            return sum;
-        }
-
         // サンプリング関数
         float Sample(float x, float y, float z) {
 
@@ -135,16 +94,11 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             //float3 spPos;
             float result = 0;
 
-#if 1
             // ３つの球の距離関数
             for (int i = 0; i < 3; i++) {
                 float sp = -sphere(pos - float3(0.5, 0.25 + 0.25 * i, 0.5), 0.005 + (sin(_Time.y * 8.0 + i * 23.365) * 0.5 + 0.5) * 0.125) + 0.5;
                 result = smoothMax(result, sp, 14);
             }
-#else
-            // 応用編：カイワレ
-            result = -DistanceFuncKaiware(twistY(pos - float3(0.5, 0.5, 0.5), _SinTime.z * 10.0), 0.5) + 0.5;
-#endif
                 return result;
             }
 
