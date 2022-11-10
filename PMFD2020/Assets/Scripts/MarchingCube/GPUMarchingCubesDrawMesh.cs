@@ -35,6 +35,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour
     //メッシュの作成
     void Initialize()
     {
+        // 頂点数はsegmentNumで決まる
         vertexMax = segmentNum * segmentNum * segmentNum;
 
         Debug.Log("VertexMax " + vertexMax);
@@ -42,6 +43,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour
         // 1Cubeの大きさをsegmentNumで分割してレンダリング時の大きさを決める
         renderScale = 1f / segmentNum;
 
+        //メッシュを作る
         CreateMesh();
 
         // シェーダーで使うMarchingCubes用の定数配列の初期化
@@ -54,7 +56,9 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour
         int meshNum = Mathf.CeilToInt((float)vertexMax / vertNum);  // 分割するMeshの数
         Debug.Log("meshNum " + meshNum);
 
+        //メッシュの配列を生成
         meshs = new Mesh[meshNum];
+        //Meshごとのマテリアル配列を生成
         materials = new Material[meshNum];
 
         // Meshのバウンズ計算

@@ -100,7 +100,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
                 result = smoothMax(result, sp, 14);
             }
                 return result;
-            }
+        }
 
         // オフセット計算（2値の間の閾値(desired)に近い点を計算する）
         float getOffset(float val1, float val2, float desired) {
@@ -430,19 +430,19 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         }
         ENDCG
 
-            // 実体のレンダリング
-            Pass {
-                Tags{ "LightMode" = "Deferred" }
+        // 実体のレンダリング
+        Pass {
+            Tags{ "LightMode" = "Deferred" }
 
-                CGPROGRAM
-                #pragma target 5.0
-                #pragma vertex vert
-                #pragma geometry geom_light
-                #pragma fragment frag_light
-                #pragma exclude_renderers nomrt
-                #pragma multi_compile_prepassfinal noshadow
-                ENDCG
-            }
+            CGPROGRAM
+            #pragma target 5.0
+            #pragma vertex vert
+            #pragma geometry geom_light
+            #pragma fragment frag_light
+            #pragma exclude_renderers nomrt
+            #pragma multi_compile_prepassfinal noshadow
+            ENDCG
+        }
 
         // 影のレンダリング
         Pass {
