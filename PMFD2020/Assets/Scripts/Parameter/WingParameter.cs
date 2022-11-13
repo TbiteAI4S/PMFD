@@ -204,7 +204,7 @@ public class WingParameter : MonoBehaviour
         wingParameterUI = GameObject.Find("wingPanel").GetComponent<WingParameterUI>();
 
         //翼に関係するデータを取得し線形補間のデータを作る
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 1/*  エラー無視のため1に変更中 元に戻す必要がある */; i++)
         {
             //座標の最大と最小の幅を計算
             int j = 2 * i;
