@@ -48,6 +48,20 @@ Shader "Dragon/DragonSkin"
                 return length(p) - s;
             }
 
+            float ellipse(float3 p, float3 d)
+            {
+                // x^2  y^2  z^2
+                // -- , -- , --
+                // a^2  b^2  c^2
+                float x2a2 = (p.x * p.x) / (d.x * d.x);
+                float y2b2 = (p.y * p.y) / (d.y * d.y);
+                float z2c2 = (p.z * p.z) / (d.z * d.z);
+                // r^2
+                float r2 = x2a2 + y2b2 + z2c2;
+
+                return r2;
+            }
+
 
             // Making ball status
             /*
