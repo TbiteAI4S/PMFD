@@ -49,7 +49,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             float4 pos			: SV_POSITION;	// ローカル座標
             float3 normal		: NORMAL;		// 法線
             float4 worldPos		: TEXCOORD0;	// ワールド座標
-            half3 sh : TEXCOORD3;				// SH
+            half3 sh            : TEXCOORD3;	// SH
         };
 
         // 影のレンダリング時のジオメトリシェーダからフラグメントシェーダに渡すデータ
