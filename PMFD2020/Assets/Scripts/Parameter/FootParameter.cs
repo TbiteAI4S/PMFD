@@ -205,9 +205,9 @@ public class FootParameter : MonoBehaviour
         footParameterUI = GameObject.Find("footPanel").GetComponent<FootParameterUI>();
 
         //後ろ足に関係するデータを取得し線形補間のデータを作る
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 6; i++)
         {
-            int k = 10 + i;
+            int k = 14 + i;
 
             //座標の最大と最小の幅を計算
             int j = 2 * i;

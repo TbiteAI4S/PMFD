@@ -10,11 +10,14 @@ public class MakeDragonBone : MonoBehaviour
     Curve curvescript;
     //ドラゴンボーンのデータ
     DragonBorneData dbd;
+    WingBorneData wbd;
 
     /* パラメータ */
     HeadParameter headParameter;
     BodyParameter bodyParameter;
     ArmParameter armParameter;
+    FootParameter footParameter;
+    WingParameter wingParameter;
 
 
     /*----ドラゴンボーンのデータ----*/
@@ -123,16 +126,15 @@ public class MakeDragonBone : MonoBehaviour
         //尾 tail
         1.0f,1.0f,
 
-        /* 左側 */
-        //上腕 left_upper_arm
+        //上腕 upper_arm
         3.2f,-0.2f,
-        //前腕 left_forearm
+        //前腕 forearm
         1.0f,1.0f,
-        //大腿 left_thigh
+        //大腿 thigh
         3.7f,0.6f,
-        //下腿 left_lower_leg
+        //下腿 lower_leg
         1.0f,-0.6f,
-        //足 left_foot
+        //足 foot
         1.0f,1.0f,
     };
 
@@ -152,31 +154,72 @@ public class MakeDragonBone : MonoBehaviour
         //尾 tail
         0.0f,0.0f,
 
-        /* 左側 */
-        //上腕 left_upper_arm
+        //上腕 upper_arm
         0.0f,0.0f,
-        //前腕 left_forearm
+        //前腕 forearm
         0.4f,0.6f,
-        //大腿 left_thigh
+        //大腿 thigh
         0.1f,1.0f,
-        //下腿 left_lower_leg
+        //下腿 lower_leg
         0.0f,-1.0f,
-        //足 left_foot
+        //足 foot
         0.0f,0.0f,
     };
 
     Vector3[] wing_position =
     {
-         //翼の上腕
+        //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(-0.2f,2.9f,0.0f),
-        new Vector3(-1.4f,5.2f,0.0f),
+        new Vector3(0.0f,3.0f,0.0f),
+        //翼の上腕
+        new Vector3(0.0f,3.0f,0.0f),
+        new Vector3(1.2f,6.0f,0.0f),
+        //翼の指中央1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(3.9f,5.7f,0.0f),
+        //翼の指中央2
+        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(7.7f,4.4f,0.0f),
+        //翼の指内1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(2.2f,3.7f,0.0f),
+        //翼の指内2
+        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(4.6f,1.3f,0.0f),
+        //翼の指外1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(5.2f,8.0f,0.0f),
+        //翼の指外2
+        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(9.4f,7.5f,0.0f),
 
     };
 
     //端点での速度
     Vector3[] wing_velocity =
     {
+        //翼の下腕
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の上腕
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指中央1
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指中央2
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指内1
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指内2
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指外1
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指外2
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
     };
@@ -184,18 +227,33 @@ public class MakeDragonBone : MonoBehaviour
     //張り
     float[] wing_tension =
     {   /* 始点, 終点 */
-        
         //翼の上腕
+        1.0f,1.0f,
+        1.0f,1.0f,
+        //翼の指中央
+        1.0f,1.0f,
+        1.0f,1.0f,
+        //翼の指内
+        1.0f,1.0f,
+        1.0f,1.0f,
+        //翼の指外
         1.0f,1.0f,
         1.0f,1.0f,
     };
 
     //方向
     float[] wing_direction =
-    {
-        /* 始点, 終点 */
-
+    {   /* 始点, 終点 */
         //翼の上腕
+        0.0f,0.0f,
+        0.0f,0.0f,
+        //翼の指中央
+        0.0f,0.0f,
+        0.0f,0.0f,
+        //翼の指内
+        0.0f,0.0f,
+        0.0f,0.0f,
+        //翼の指外
         0.0f,0.0f,
         0.0f,0.0f,
     };
@@ -226,7 +284,7 @@ public class MakeDragonBone : MonoBehaviour
      */
     public void makebone(Vector3[][] boneArray)
     {
-        for (int j = 0; j < 20; j = j + 2)
+        for (int j = 0; j < 20; j = j + 2)//始点と終点のvelocityの計算をパーツの個数分行う
         {
             //ドラゴンボーン作成
             velocity[j].x = tension[j] * Mathf.Cos(direction[j]);
@@ -235,7 +293,7 @@ public class MakeDragonBone : MonoBehaviour
             velocity[j + 1].y = tension[j + 1] * Mathf.Sin(direction[j + 1]);
 
             Vector3[] p = new Vector3[step];
-            for (int i = 0; i < step; i++)
+            for (int i = 0; i < step; i++)//stepの回数分曲線の点を作る
             {
                 float t = i / (float)(step - 1.0f);
                 p[i] = curvescript.curve(position[j], velocity[j], position[j + 1], velocity[j + 1], t);
@@ -245,28 +303,24 @@ public class MakeDragonBone : MonoBehaviour
         }
     }
 
-    //ドラゴンボーンの更新
-    /*
-     * 変化した端点と再計算したvelocityで曲線を作りboneArrayに渡す
-     */
-    public void updatemakebone(Vector3 update_start, Vector3 update_end, Vector3[][] boneArray)
+    public void makewingbone(Vector3[][] wingboneArray)
     {
-        for (int j = 0; j < 20; j = j + 2)
+        for (int j = 0; j < 16; j = j + 2)//始点と終点のvelocityの計算をパーツの個数分行う
         {
             //ドラゴンボーン作成
-            velocity[j].x = tension[j] * Mathf.Cos(direction[j]);
-            velocity[j].y = tension[j] * Mathf.Sin(direction[j]);
-            velocity[j + 1].x = tension[j + 1] * Mathf.Cos(direction[j + 1]);
-            velocity[j + 1].y = tension[j + 1] * Mathf.Sin(direction[j + 1]);
+            wing_velocity[j].x = wing_tension[j] * Mathf.Cos(wing_direction[j]);
+            wing_velocity[j].y = wing_tension[j] * Mathf.Sin(wing_direction[j]);
+            wing_velocity[j + 1].x = wing_tension[j + 1] * Mathf.Cos(wing_direction[j + 1]);
+            wing_velocity[j + 1].y = wing_tension[j + 1] * Mathf.Sin(wing_direction[j + 1]);
 
             Vector3[] p = new Vector3[step];
-            for (int i = 0; i < step; i++)
+            for (int i = 0; i < step; i++)//stepの回数分曲線の点を作る
             {
                 float t = i / (float)(step - 1.0f);
-                p[i] = curvescript.curve(position[j]+update_start, velocity[j], position[j + 1]+update_end, velocity[j + 1], t);
+                p[i] = curvescript.curve(wing_position[j], wing_velocity[j], wing_position[j + 1], wing_velocity[j + 1], t);
             }
             //曲線を渡す
-            boneArray[j / 2] = p;
+            wingboneArray[j / 2] = p;
         }
     }
 
@@ -300,7 +354,6 @@ public class MakeDragonBone : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////////////////////
 
-    // Start is called before the first frame update
     void Start()
     {
         //curveのスクリプト取得
@@ -308,24 +361,26 @@ public class MakeDragonBone : MonoBehaviour
 
         //ドラゴンボーンのデータのスクリプトを取得
         dbd = GameObject.Find("Doragon").GetComponent<DragonBorneData>();
+        wbd = GameObject.Find("Doragon").GetComponent<WingBorneData>();
 
         //パラメータスクリプトの取得
         headParameter = GameObject.Find("headPanel").GetComponent<HeadParameter>();
         bodyParameter = GameObject.Find("bodyPanel").GetComponent<BodyParameter>();
         armParameter = GameObject.Find("armPanel").GetComponent<ArmParameter>();
+        footParameter = GameObject.Find("footPanel").GetComponent<FootParameter>();
+        wingParameter = GameObject.Find("wingPanel").GetComponent<WingParameter>();
 
         //配列の初期化
         dragonbone = new Vector3[10][];
-        wing_dragonbone = new Vector3[5][];
+        wing_dragonbone = new Vector3[8][];
 
         //各パーツでドラゴンボーン作成
         makebone(dragonbone);
+        makewingbone(wing_dragonbone);
 
-        //シェーダーに渡す
-        //BoneDataToShader();
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         //HeadParameterの更新
@@ -350,6 +405,15 @@ public class MakeDragonBone : MonoBehaviour
             position[k] = armParameter.left_arm_position[i];
             tension[k] = armParameter.arm_tension[i];
             direction[k] = armParameter.arm_direction[i];
+        }
+        //FootParameterの更新
+        for (int i = 0; i < 6; i++)
+        {
+            int k = i + 14;
+            position[k] = footParameter.left_foot_position[i];
+            tension[k] = footParameter.foot_tension[i];
+            direction[k] = footParameter.foot_direction[i];
+            //Debug.Log("position[" + k + "]" + position[k]+ ",tension[" + k + "]" + tension[k]+ ",direction[" + k + "]" + direction[k]);
         }
 
         //ドラゴンボーンを作る

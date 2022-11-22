@@ -21,7 +21,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         Tags{ "RenderType" = "Opaque" }
 
         CGINCLUDE
-        //#define UNITY_PASS_DEFERRED
+        #define UNITY_PASS_DEFERRED
         #include "HLSLSupport.cginc"
         #include "UnityShaderVariables.cginc"
         #include "UnityCG.cginc"

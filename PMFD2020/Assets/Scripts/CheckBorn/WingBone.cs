@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,6 @@ public class WingBone : MonoBehaviour
     MakeDragonBone mbd;
 
     LineRenderer lineRenderer;
-
-    int bornNum = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +24,14 @@ public class WingBone : MonoBehaviour
         lineRenderer.startWidth = 0.2f;
         lineRenderer.endWidth = 0.2f;
 
+        //下腕と上腕の結合
+        Vector3[] wing = new Vector3[mbd.wing_dragonbone[0].Length + mbd.wing_dragonbone[1].Length];
+        Array.Copy(mbd.wing_dragonbone[0], wing, mbd.wing_dragonbone[0].Length);
+        Array.Copy(mbd.wing_dragonbone[1], 0, wing, mbd.wing_dragonbone[0].Length, mbd.wing_dragonbone[1].Length);
+
         // 点の数を指定する
-        //lineRenderer.positionCount = mbd.dragonbone[bornNum].Length;
+        lineRenderer.positionCount = wing.Length;
         // 線を引く場所を指定する
-        //lineRenderer.SetPositions(mbd.dragonbone[bornNum]);
+        lineRenderer.SetPositions(wing);
     }
 }
