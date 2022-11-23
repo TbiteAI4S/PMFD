@@ -13,7 +13,7 @@ public class WingParameter : MonoBehaviour
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
         new Vector3(0.0f,3.0f,0.0f),
-        //翼の上腕
+        //翼の上腕（前腕）
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
         //翼の指中央1
@@ -41,7 +41,7 @@ public class WingParameter : MonoBehaviour
        //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
         new Vector3(0.0f,3.0f,0.0f),
-        //翼の上腕
+        //翼の上腕（前腕）
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
         //翼の指中央1
@@ -67,7 +67,7 @@ public class WingParameter : MonoBehaviour
     public float[] wing_tension =
     {   /* 始点, 終点 */
 
-        //翼の上腕
+        //翼の腕
         1.0f,1.0f,
         1.0f,1.0f,
         //翼の指中央
@@ -85,7 +85,7 @@ public class WingParameter : MonoBehaviour
     public float[] wing_direction =
     {   /* 始点, 終点 */
 
-        //翼の上腕
+        //翼の腕
         0.0f,0.0f,
         0.0f,0.0f,
         //翼の指中央
@@ -100,23 +100,29 @@ public class WingParameter : MonoBehaviour
     };
 
     //線形補間用のデータ
-    // 0:wingupperarm_startmin,  1:wingupperarm_startmax
-    // 2:wingupperarm_endmin,    3:wingupperarm_endmax
+    // 0:wingunderarm_startmin,  1:wingunderarm_startmax
+    // 2:wingunderarm_endmin,    3:wingunderarm_endmax
     // 4:wingforearm_startmin,   5:wingforearm_startmin
     // 6:wingforearm_endmax,     7:wingforearm_endmax
-    // 8:wing_finger1_startmin,  9:wing_finger1_startmin
-    //10:wing_finger1_endmax,   11:wing_finger1_endmax
-    //12:wing_finger2_startmin, 13:wing_finger2_startmin
-    //14:wing_finger2_endmax,   15:wing_finger2_endmax
-    //16:wing_finger3_startmin, 17:wing_finger3_startmin
-    //18:wing_finger3_endmax,   19:wing_finger3_endmax
-    Vector3[] wing_positiondistance = new Vector3[20];
-    float[] wing_tension_abs = new float[20];
-    float[] wing_direction_abs = new float[20];
+    // 8:wing_finger1a_startmin, 9:wing_finger1a_startmin
+    //10:wing_finger1a_endmax,   11:wing_finger1a_endmax
+    //12:wing_finger1b_startmin, 13:wing_finger1b_startmin
+    //14:wing_finger1b_endmax,   15:wing_finger1b_endmax
+    //16:wing_finger2a_startmin, 17:wing_finger2a_startmin
+    //18:wing_finger2a_endmax,   19:wing_finger2a_endmax
+    //20:wing_finger2b_startmin, 21:wing_finger2b_startmin
+    //22:wing_finger2b_endmax,   23:wing_finger2b_endmax
+    //24:wing_finger3a_startmin, 25:wing_finger3a_startmin
+    //26:wing_finger3a_endmax,   27:wing_finger3a_endmax
+    //28:wing_finger3b_startmin, 29:wing_finger3b_startmin
+    //30:wing_finger3b_endmax,   31:wing_finger3b_endmax
+    Vector3[] wing_positiondistance = new Vector3[32];
+    float[] wing_tension_abs = new float[32];
+    float[] wing_direction_abs = new float[32];
 
     //パラメータの変更を確認する
-    int check_wingupperarm_long;
-    int check_wingupperarm_size;
+    int check_wingunderarm_long;
+    int check_wingunderarm_size;
     int check_wingforearm_long;
     int check_wingforearm_size;
     int check_wing_size;
@@ -132,7 +138,8 @@ public class WingParameter : MonoBehaviour
         return checkparameterValue;
     }
 
-    void change_wing_size(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
+    //下腕の長さを変更
+    void change_wingunderarm_long(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
         Vector3[] minP, float[] minT, float[] minD, int parameterNum)
     {
         switch (parameterNum)
@@ -195,6 +202,136 @@ public class WingParameter : MonoBehaviour
         }
     }
 
+    //上腕の長さを変更
+    void change_wingforearm_long(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum)
+    {
+        switch (parameterNum)
+        {
+            case 0://baseにする
+                for (int i = 2; i < 4; i++)
+                {
+                    left_wing_position[i] = baseP[i];
+                    right_wing_position[i] = baseP[i];
+                    wing_tension[i] = baseT[i];
+                    wing_direction[i] = baseD[i];
+                }
+                break;
+
+            case 1://max方向に1つ増やす
+                for (int i = 2; i < 4; i++)
+                {
+                    //線形補間の1,3を使う
+                    left_wing_position[i] = wing_positiondistance[2 * i + 1];
+                    right_wing_position[i] = wing_positiondistance[2 * i + 1];
+                    wing_tension[i] = wing_tension_abs[i];
+                    wing_direction[i] = wing_direction_abs[i];
+                }
+                break;
+
+            case 2://maxにする
+                for (int i = 2; i < 4; i++)
+                {
+                    left_wing_position[i] = maxP[i];
+                    right_wing_position[i] = maxP[i];
+                    wing_tension[i] = maxT[i];
+                    wing_direction[i] = maxD[i];
+                }
+                break;
+
+            case -1://min方向に1つ増やす
+                for (int i = 2; i < 4; i++)
+                {
+                    //線形補間の0,2を使う
+                    left_wing_position[i] = wing_positiondistance[2 * i];
+                    right_wing_position[i] = wing_positiondistance[2 * i];
+                    wing_tension[i] = wing_tension_abs[i];
+                    wing_direction[i] = wing_direction_abs[i];
+                }
+                break;
+
+            case -2://minにする
+                for (int i = 2; i < 4; i++)
+                {
+                    left_wing_position[i] = minP[i];
+                    right_wing_position[i] = minP[1];
+                    wing_tension[i] = minT[i];
+                    wing_direction[i] = minD[i];
+                }
+                break;
+
+            default:
+                Debug.Log("parameterNumが正常入力でない");
+                break;
+        }
+    }
+
+    //翼のサイズを変更
+    void change_wing_size(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum)
+    {
+        switch (parameterNum)
+        {
+            case 0://baseにする
+                for (int i = 4; i < 16; i++)
+                {
+                    left_wing_position[i] = baseP[i];
+                    right_wing_position[i] = baseP[i];
+                    wing_tension[i] = baseT[i];
+                    wing_direction[i] = baseD[i];
+                }
+                break;
+
+            case 1://max方向に1つ増やす
+                for (int i = 4; i < 16; i++)
+                {
+                    //線形補間の1,3を使う
+                    left_wing_position[i] = wing_positiondistance[2 * i + 1];
+                    right_wing_position[i] = wing_positiondistance[2 * i + 1];
+                    wing_tension[i] = wing_tension_abs[i];
+                    wing_direction[i] = wing_direction_abs[i];
+                }
+                break;
+
+            case 2://maxにする
+                for (int i = 4; i < 16; i++)
+                {
+                    left_wing_position[i] = maxP[i];
+                    right_wing_position[i] = maxP[i];
+                    wing_tension[i] = maxT[i];
+                    wing_direction[i] = maxD[i];
+                }
+                break;
+
+            case -1://min方向に1つ増やす
+                for (int i = 4; i < 16; i++)
+                {
+                    //線形補間の0,2を使う
+                    left_wing_position[i] = wing_positiondistance[2 * i];
+                    right_wing_position[i] = wing_positiondistance[2 * i];
+                    wing_tension[i] = wing_tension_abs[i];
+                    wing_direction[i] = wing_direction_abs[i];
+                }
+                break;
+
+            case -2://minにする
+                for (int i = 4; i < 16; i++)
+                {
+                    left_wing_position[i] = minP[i];
+                    right_wing_position[i] = minP[1];
+                    wing_tension[i] = minT[i];
+                    wing_direction[i] = minD[i];
+                }
+                break;
+
+            default:
+                Debug.Log("parameterNumが正常入力でない");
+                break;
+        }
+    }
+
+    //翼の枚数の変更
+
     // Start is called before the first frame update
     void Start()
     {
@@ -204,7 +341,7 @@ public class WingParameter : MonoBehaviour
         wingParameterUI = GameObject.Find("wingPanel").GetComponent<WingParameterUI>();
 
         //翼に関係するデータを取得し線形補間のデータを作る
-        for (int i = 0; i < 1/*  エラー無視のため1に変更中 元に戻す必要がある */; i++)
+        for (int i = 0; i < 16; i++)
         {
             //座標の最大と最小の幅を計算
             int j = 2 * i;
@@ -219,8 +356,8 @@ public class WingParameter : MonoBehaviour
         }
 
         //初期化
-        check_wingupperarm_long = 0;
-        check_wingupperarm_size = 0;
+        check_wingunderarm_long = 0;
+        check_wingunderarm_size = 0;
         check_wingforearm_long = 0;
         check_wingforearm_size = 0;
         check_wing_size = 0;
@@ -230,6 +367,13 @@ public class WingParameter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // パラメータが変化したか確認
+        check_wingunderarm_long = CheckChengeParameter(check_wingunderarm_long, wingParameterUI.wingunderarm_long_throwValue);
+        check_wingunderarm_size = CheckChengeParameter(check_wingunderarm_size, wingParameterUI.wingunderarm_size_throwValue);
+        check_wingforearm_long = CheckChengeParameter(check_wingforearm_long, wingParameterUI.wingforearm_long_throwValue);
+        check_wingforearm_size = CheckChengeParameter(check_wingforearm_size, wingParameterUI.wingforearm_size_throwValue);
+        check_wing_number = CheckChengeParameter(check_wing_number, wingParameterUI.wing_numberSlider_throwValue);
 
+        //下腕の長さを変更
     }
 }

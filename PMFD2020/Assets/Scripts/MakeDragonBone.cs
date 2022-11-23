@@ -415,6 +415,7 @@ public class MakeDragonBone : MonoBehaviour
             direction[k] = footParameter.foot_direction[i];
             //Debug.Log("position[" + k + "]" + position[k]+ ",tension[" + k + "]" + tension[k]+ ",direction[" + k + "]" + direction[k]);
         }
+        //WingParameterの更新
 
         //ドラゴンボーンを作る
         makebone(dragonbone);
