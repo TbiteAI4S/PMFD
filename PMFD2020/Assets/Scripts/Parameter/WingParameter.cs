@@ -16,18 +16,18 @@ public class WingParameter : MonoBehaviour
         //翼の上腕（前腕）
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
-        //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
-        //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
         //翼の指内1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(2.2f,3.7f,0.0f),
         //翼の指内2
         new Vector3(2.2f,3.7f,0.0f),
         new Vector3(4.6f,1.3f,0.0f),
+        //翼の指中央1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(3.9f,5.7f,0.0f),
+        //翼の指中央2
+        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(7.7f,4.4f,0.0f),
         //翼の指外1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(5.2f,8.0f,0.0f),
@@ -44,18 +44,18 @@ public class WingParameter : MonoBehaviour
         //翼の上腕（前腕）
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
-        //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
-        //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
         //翼の指内1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(2.2f,3.7f,0.0f),
         //翼の指内2
         new Vector3(2.2f,3.7f,0.0f),
         new Vector3(4.6f,1.3f,0.0f),
+        //翼の指中央1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(3.9f,5.7f,0.0f),
+        //翼の指中央2
+        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(7.7f,4.4f,0.0f),
         //翼の指外1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(5.2f,8.0f,0.0f),
@@ -70,10 +70,10 @@ public class WingParameter : MonoBehaviour
         //翼の腕
         1.0f,1.0f,
         1.0f,1.0f,
-        //翼の指中央
-        1.0f,1.0f,
-        1.0f,1.0f,
         //翼の指内
+        1.0f,1.0f,
+        1.0f,1.0f,
+        //翼の指中央
         1.0f,1.0f,
         1.0f,1.0f,
         //翼の指外
@@ -88,10 +88,10 @@ public class WingParameter : MonoBehaviour
         //翼の腕
         0.0f,0.0f,
         0.0f,0.0f,
-        //翼の指中央
-        0.0f,0.0f,
-        0.0f,0.0f,
         //翼の指内
+        0.0f,0.0f,
+        0.0f,0.0f,
+        //翼の指中央
         0.0f,0.0f,
         0.0f,0.0f,
         //翼の指外
@@ -204,7 +204,7 @@ public class WingParameter : MonoBehaviour
 
     //上腕の長さを変更
     void change_wingforearm_long(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
-        Vector3[] minP, float[] minT, float[] minD, int parameterNum)
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long, Vector3 right_long)
     {
         switch (parameterNum)
         {
@@ -264,11 +264,19 @@ public class WingParameter : MonoBehaviour
                 Debug.Log("parameterNumが正常入力でない");
                 break;
         }
+        //下腕の変形による上腕の座標を補正
+        for (int i = 2; i < 4; i++)
+        {
+            Vector3 left_wing_correction = left_wing_position[i] + left_long;
+            left_wing_position[i] = left_wing_correction;
+            Vector3 right_wing_correction = right_wing_position[i] + right_long;
+            right_wing_position[i] = right_wing_correction;
+        }
     }
 
     //翼のサイズを変更
     void change_wing_size(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
-        Vector3[] minP, float[] minT, float[] minD, int parameterNum)
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long, Vector3 right_long)
     {
         switch (parameterNum)
         {
@@ -327,6 +335,14 @@ public class WingParameter : MonoBehaviour
             default:
                 Debug.Log("parameterNumが正常入力でない");
                 break;
+        }
+        //上腕の変形による翼の座標を補正
+        for (int i = 4; i < 16; i++)
+        {
+            Vector3 left_wing_correction = left_wing_position[i] + left_long;
+            left_wing_position[i] = left_wing_correction;
+            Vector3 right_wing_correction = right_wing_position[i] + right_long;
+            right_wing_position[i] = right_wing_correction;
         }
     }
 
@@ -375,5 +391,23 @@ public class WingParameter : MonoBehaviour
         check_wing_number = CheckChengeParameter(check_wing_number, wingParameterUI.wing_numberSlider_throwValue);
 
         //下腕の長さを変更
+        change_wingunderarm_long(wbd.wing_nomalposition, wbd.wing_nomaltension, wbd.wing_nomaldirection, 
+            wbd.wing_maxposition, wbd.wing_maxtension, wbd.wing_maxdirection,
+            wbd.wing_minposition, wbd.wing_mintension, wbd.wing_mindirection,
+            check_wingunderarm_long);
+
+        //下腕の長さを取得
+        Vector3 left_wingunderarm_long = left_wing_position[1] - wbd.wing_nomalposition[1];
+        Vector3 right_wingunderarm_long = right_wing_position[1] - wbd.wing_nomalposition[1];
+
+        //上腕の長さを変更
+        change_wingforearm_long(wbd.wing_nomalposition, wbd.wing_nomaltension, wbd.wing_nomaldirection, 
+            wbd.wing_maxposition, wbd.wing_maxtension, wbd.wing_maxdirection, 
+            wbd.wing_minposition, wbd.wing_mintension, wbd.wing_mindirection,
+            check_wingforearm_long, left_wingunderarm_long, right_wingunderarm_long);
+
+        //上腕の長さを変更
+        Vector3 left_wingforearm_long = left_wing_position[3] - wbd.wing_nomalposition[3];
+        Vector3 right_wingforearm_long = right_wing_position[3] - wbd.wing_nomalposition[3];
     }
 }

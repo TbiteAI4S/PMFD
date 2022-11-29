@@ -174,18 +174,18 @@ public class MakeDragonBone : MonoBehaviour
         //翼の上腕
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
-        //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
-        //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
         //翼の指内1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(2.2f,3.7f,0.0f),
         //翼の指内2
         new Vector3(2.2f,3.7f,0.0f),
         new Vector3(4.6f,1.3f,0.0f),
+        //翼の指中央1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(3.9f,5.7f,0.0f),
+        //翼の指中央2
+        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(7.7f,4.4f,0.0f),
         //翼の指外1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(5.2f,8.0f,0.0f),
@@ -204,16 +204,16 @@ public class MakeDragonBone : MonoBehaviour
         //翼の上腕
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //翼の指中央1
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
-        //翼の指中央2
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
         //翼の指内1
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
         //翼の指内2
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指中央1
+        new Vector3(1.0f, 0.0f, 0.0f),
+        new Vector3(1.0f, 0.0f, 0.0f),
+        //翼の指中央2
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
         //翼の指外1
@@ -230,10 +230,10 @@ public class MakeDragonBone : MonoBehaviour
         //翼の上腕
         1.0f,1.0f,
         1.0f,1.0f,
-        //翼の指中央
-        1.0f,1.0f,
-        1.0f,1.0f,
         //翼の指内
+        1.0f,1.0f,
+        1.0f,1.0f,
+        //翼の指中央
         1.0f,1.0f,
         1.0f,1.0f,
         //翼の指外
@@ -247,10 +247,10 @@ public class MakeDragonBone : MonoBehaviour
         //翼の上腕
         0.0f,0.0f,
         0.0f,0.0f,
-        //翼の指中央
-        0.0f,0.0f,
-        0.0f,0.0f,
         //翼の指内
+        0.0f,0.0f,
+        0.0f,0.0f,
+        //翼の指中央
         0.0f,0.0f,
         0.0f,0.0f,
         //翼の指外
@@ -416,9 +416,15 @@ public class MakeDragonBone : MonoBehaviour
             //Debug.Log("position[" + k + "]" + position[k]+ ",tension[" + k + "]" + tension[k]+ ",direction[" + k + "]" + direction[k]);
         }
         //WingParameterの更新
+        for (int i = 0; i < 16; i++)
+        {
+            wing_position[i] = wingParameter.left_wing_position[i];
+            wing_tension[i] = wingParameter.wing_tension[i];
+            wing_direction[i] = wingParameter.wing_direction[i];
+        }
 
         //ドラゴンボーンを作る
         makebone(dragonbone);
-        
+        makewingbone(wing_dragonbone);
     }
 }

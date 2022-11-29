@@ -5181,6 +5181,7 @@ GameObject:
   - component: {fileID: 541613439}
   - component: {fileID: 541613440}
   - component: {fileID: 541613441}
+  - component: {fileID: 541613442}
   m_Layer: 0
   m_Name: Doragon
   m_TagString: Untagged
@@ -5592,6 +5593,18 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+--- !u!114 &541613442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541613437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b7f1d5a9a11d44a890d3c31fe5568d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &547981088
 GameObject:
   m_ObjectHideFlags: 0
