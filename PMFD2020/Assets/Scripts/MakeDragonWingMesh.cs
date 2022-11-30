@@ -198,7 +198,7 @@ public class MakeDragonWingMesh : MonoBehaviour
         //wingVertexの j と j+1 の配列を1つにする
         //配列 j+1 の初めは j の最後と同じなため統合する
         //対象は翼膜1～3以外
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < 4; i++)
         {
             int j = 2 * i;
             Vector3[] wing = new Vector3[wingVertexArray[j].Length + wingVertexArray[j + 1].Length - 1];
@@ -211,8 +211,10 @@ public class MakeDragonWingMesh : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             int j = i + 8;
-            wing_membraneArray[i] = wingVertexArray[j];
+            int k = i + 4;
+            wing_membraneArray[k] = wingVertexArray[j];
         }
+        
     }
 
     // Start is called before the first frame update
@@ -234,11 +236,14 @@ public class MakeDragonWingMesh : MonoBehaviour
 
         //ドラゴンボーンの作成
         makewingVertex(wingVertex);
-        for(int i = 0; i < wingVertex[0].Length; i++)
+        //mesh用の配列に変換
+        makeMeshVertex(wingVertex, wing_membrane);
+        /*
+        for (int i = 0; i < wing_membrane[0].Length; i++)
         {
-            Debug.Log("wingVertex" + wingVertex[0][i]);
+            Debug.Log("wing_membrane" + wing_membrane[0][i]);
         }
-        
+        */
 
         //メッシュの作成
         //wing_membraneMesh = new Mesh();

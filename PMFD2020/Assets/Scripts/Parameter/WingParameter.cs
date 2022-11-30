@@ -409,5 +409,11 @@ public class WingParameter : MonoBehaviour
         //上腕の長さを変更
         Vector3 left_wingforearm_long = left_wing_position[3] - wbd.wing_nomalposition[3];
         Vector3 right_wingforearm_long = right_wing_position[3] - wbd.wing_nomalposition[3];
+
+        //翼のサイズを変更
+        change_wing_size(wbd.wing_nomalposition, wbd.wing_nomaltension, wbd.wing_nomaldirection,
+            wbd.wing_maxposition, wbd.wing_maxtension, wbd.wing_maxdirection,
+            wbd.wing_minposition, wbd.wing_mintension, wbd.wing_mindirection,
+            check_wingforearm_size, left_wingforearm_long, right_wingforearm_long);
     }
 }
