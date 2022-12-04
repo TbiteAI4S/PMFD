@@ -158,11 +158,14 @@ public class MakeDragonWingMesh : MonoBehaviour
     const int stepwing5_6_7 = 9;
 
     //翼膜の頂点
-    Vector3[][] wingVertex;      //最初に生成    [11][5]
-    Vector3[][] wing_membrane;   //Mesh用の頂点  [7 ][9]
+    Vector3[][] wingVertex = new Vector3[11][];      //最初に生成    [11][5]
+    Vector3[][] wing_membrane = new Vector3[7][];   //Mesh用の頂点  [7][9]
 
     //翼膜のメッシュ
     Mesh wing_membraneMesh;
+
+    //翼膜メッシュの頂点リスト
+    int[][] wing_triangles = new int[3][];
 
     //翼膜の頂点を作成
     /*
@@ -230,9 +233,6 @@ public class MakeDragonWingMesh : MonoBehaviour
         //パラメータスクリプトの取得
         wingParameter = GameObject.Find("wingPanel").GetComponent<WingParameter>();
 
-        //配列の初期化
-        wingVertex = new Vector3[11][];
-        wing_membrane = new Vector3[7][];
 
         //ドラゴンボーンの作成
         makewingVertex(wingVertex);
