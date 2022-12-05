@@ -165,7 +165,12 @@ public class MakeDragonWingMesh : MonoBehaviour
     Mesh wing_membraneMesh;
 
     //翼膜メッシュの頂点リスト
-    int[][] wing_triangles = new int[3][];
+    int[] wing_triangles1 = new int[66];
+    int[] wing_triangles2 = { 0,19,10,  10,19,20,  10,20,11,  11,20,21,  11,20,12,  12,20,22,  12,22,13,
+                             17,16,46,  46,16,15,  46,15,47,  47,15,14,  47,14,48,  48,14,13,  48,13,49,
+                             26,52,25,  25,52,51,  25,51,24,  24,51,50,  24,50,23,  23,50,49,  23,49,22,
+                             13,22,49};
+    int[] wing_triangles3 = new int[66];
 
     //翼膜の頂点を作成
     /*
@@ -181,14 +186,29 @@ public class MakeDragonWingMesh : MonoBehaviour
             wing_velocity[j + 1].x = wing_tension[j + 1] * Mathf.Cos(wing_direction[j + 1]);
             wing_velocity[j + 1].y = wing_tension[j + 1] * Mathf.Sin(wing_direction[j + 1]);
 
-            Vector3[] p = new Vector3[step1_2_3_4];
-            for (int i = 0; i < step1_2_3_4; i++)//stepの回数分曲線の点を作る
+            //翼の腕・指の場合
+            if (j < 16)
             {
-                float t = i / (float)(step1_2_3_4 - 1.0f);
-                p[i] = curvescript.curve(wing_position[j], wing_velocity[j], wing_position[j + 1], wing_velocity[j + 1], t);
+                Vector3[] p = new Vector3[step1_2_3_4];
+                for (int i = 0; i < step1_2_3_4; i++)//stepの回数分曲線の点を作る
+                {
+                    float t = i / (float)(step1_2_3_4 - 1.0f);
+                    p[i] = curvescript.curve(wing_position[j], wing_velocity[j], wing_position[j + 1], wing_velocity[j + 1], t);
+                }
+                //曲線を渡す
+                wingVertexArray[j / 2] = p;
             }
-            //曲線を渡す
-            wingVertexArray[j / 2] = p;
+            else//翼膜の場合
+            {
+                Vector3[] p = new Vector3[stepwing5_6_7];
+                for (int i = 0; i < stepwing5_6_7; i++)//stepの回数分曲線の点を作る
+                {
+                    float t = i / (float)(stepwing5_6_7 - 1.0f);
+                    p[i] = curvescript.curve(wing_position[j], wing_velocity[j], wing_position[j + 1], wing_velocity[j + 1], t);
+                }
+                //曲線を渡す
+                wingVertexArray[j / 2] = p;
+            }            
         }
     }
 

@@ -59,21 +59,28 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             float4 hpos			: TEXCOORD1;
         };
 
+        //分割数
         int _SegmentNum;
 
+        //大きさ
         float _Scale;
+        //閾値
         float _Threashold;
 
+        //カラー
         float4 _DiffuseColor;
         float3 _HalfSize;
         float4x4 _Matrix;
 
+        //発光
         float _EmissionIntensity;
         half3 _EmissionColor;
 
+        //光沢
         half _Glossiness;
         half _Metallic;
 
+        //定数
         StructuredBuffer<float3> vertexOffset;
         StructuredBuffer<int> cubeEdgeFlags;
         StructuredBuffer<int2> edgeConnection;
@@ -254,10 +261,13 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             out half4 outNormal : SV_Target2,
             out half4 outEmission : SV_Target3)
         {
+            //法線取得
             fixed3 normal = IN.normal;
 
+            //ワールド座標
             float3 worldPos = IN.worldPos;
 
+            //視線方向
             fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 
 #ifdef UNITY_COMPILER_HLSL

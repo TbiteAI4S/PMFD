@@ -244,7 +244,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
                     // Transform行列を掛けてワールド座標に変換
                     float4 ppos = mul(_Matrix, float4(edgeVertices[vindex], 1));
                     o.pos = UnityObjectToClipPos(ppos);
-
+                    //法線をワールド座標に変換
                     float3 norm = UnityObjectToWorldNormal(normalize(edgeNormals[vindex]));
                     o.normal = normalize(mul(_Matrix, float4(norm,0)));
 
