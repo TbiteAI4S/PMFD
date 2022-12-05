@@ -269,7 +269,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
 
             //視線方向
             fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
-
+            /*
 #ifdef UNITY_COMPILER_HLSL
                 SurfaceOutputStandard o = (SurfaceOutputStandard)0;
 #else
@@ -326,6 +326,11 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         #ifndef UNITY_HDR_ON
                 outEmission.rgb = exp2(-outEmission.rgb);
         #endif
+        */
+            outDiffuse = _DiffuseColor;
+            outSpecSmoothness = half4 (0.0f,0.0f,0.0f, _Glossiness);
+            outNormal = half4(normal * 0.5f + 0.5f, 1.0f);
+            outEmission = 0;
         }
 
         // 影のジオメトリシェーダ
