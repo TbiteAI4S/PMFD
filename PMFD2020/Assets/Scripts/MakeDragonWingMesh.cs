@@ -265,9 +265,11 @@ public class MakeDragonWingMesh : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             int j = i + 8;
-            for(int k = 0; k < 3; k++)
+            for(int k = 0; k < 9; k++)
             {
-                wing_membraneArray[k] = wingVertexArray[j];
+                //wing_membraneVertexArray[36]から翼膜1～3を入れていく
+                int num = k + 36;
+                wing_membraneVertexArray[num] = wingVertexArray[j][k];
             }
             
         }
