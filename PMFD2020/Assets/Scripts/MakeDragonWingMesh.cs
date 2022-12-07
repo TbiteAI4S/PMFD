@@ -158,14 +158,20 @@ public class MakeDragonWingMesh : MonoBehaviour
     const int stepwing5_6_7 = 9;
 
     //翼膜の頂点
-    Vector3[][] wingVertex = new Vector3[11][];      //最初に生成    [11][5]
+    Vector3[][] wingVertex = new Vector3[11][];     //最初に生成    [11][5]
     Vector3[][] wing_membrane = new Vector3[7][];   //Mesh用の頂点  [7][9]
+    Vector3[] wing_membraneVertex = new Vector3[63];//Meshに使用する配列
 
     //翼膜のメッシュ
     Mesh wing_membraneMesh;
+    //メッシュフィルター
+    MeshFilter meshFilter;
 
     //翼膜メッシュの頂点リスト
-    int[] wing_triangles1 = new int[66];
+    int[] wing_triangles1 = { 0,10, 1,   1,10, 2,   2,10,11,   2,11, 3,   3,11,12,   3,12, 4,   4,12,13,
+                             36, 7,37,  37, 7, 6,  37, 6,38,  38, 6, 5,  38, 5,39,  39, 5, 4,  39, 4,40,
+                             17,43,16,  16,43,15,  15,43,42,  15,42,14,  14,42,41,  14,41,13,  13,41,40,
+                              4,13,40};
     int[] wing_triangles2 = { 0,19,10,  10,19,20,  10,20,11,  11,20,21,  11,20,12,  12,20,22,  12,22,13,
                              17,16,46,  46,16,15,  46,15,47,  47,15,14,  47,14,48,  48,14,13,  48,13,49,
                              26,52,25,  25,52,51,  25,51,24,  24,51,50,  24,50,23,  23,50,49,  23,49,22,
@@ -218,10 +224,10 @@ public class MakeDragonWingMesh : MonoBehaviour
      */
     void makeMeshVertex(Vector3[][] wingVertexArray, Vector3[][] wing_membraneArray)
     {
-        //wingVertexの j と j+1 の配列を1つにする
+        //wingVertexArrayの j と j+1 の配列を1つにする
         //配列 j+1 の初めは j の最後と同じなため統合する
         //対象は翼膜1～3以外
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             int j = 2 * i;
             Vector3[] wing = new Vector3[wingVertexArray[j].Length + wingVertexArray[j + 1].Length - 1];
@@ -238,6 +244,50 @@ public class MakeDragonWingMesh : MonoBehaviour
             wing_membraneArray[k] = wingVertexArray[j];
         }
         
+    }
+
+    //翼膜meshを作成
+    void makeWingMeshVertex(Vector3[][] wingVertexArray, Vector3[] wing_membraneVertexArray)
+    {
+        //wingVertexArrayの j と j+1 の配列を1つにする
+        //配列 j+1 の初めは j の最後と同じなため統合する
+        //対象は翼膜1～3以外
+        for (int i = 0; i < 4; i++)
+        {
+            int j = 2 * i;
+            Vector3[] wing = new Vector3[wingVertexArray[j].Length + wingVertexArray[j + 1].Length - 1];
+            Array.Copy(wingVertexArray[j], wing, wingVertexArray[j].Length);
+            Array.Copy(wingVertexArray[j + 1], 1, wing, wingVertexArray[j].Length, wingVertexArray[j + 1].Length - 1);
+            //Mesh用配列に渡す
+            wing_membraneArray[i] = wing;
+        }
+        //翼膜1～3をMesh用に渡す
+        for (int i = 0; i < 3; i++)
+        {
+            int j = i + 8;
+            for(int k = 0; k < 3; k++)
+            {
+                wing_membraneArray[k] = wingVertexArray[j];
+            }
+            
+        }
+    }
+
+    //翼のメッシュを作成
+    private void createMesh(Vector3[] vertexList, int[] meshTriangles)
+    {
+        //メッシュを作る
+        wing_membraneMesh = new Mesh();
+
+        //メッシュに頂点リストを登録
+        wing_membraneMesh.SetVertices(vertexList);
+
+        //メッシュに面を構成するインデックスリストを登録
+        wing_membraneMesh.SetTriangles(meshTriangles, 0);
+
+        //作成したメッシュをメッシュフィルターに設定
+        meshFilter = GetComponent<MeshFilter>();
+        meshFilter.mesh = wing_membraneMesh;
     }
 
     // Start is called before the first frame update
@@ -266,7 +316,11 @@ public class MakeDragonWingMesh : MonoBehaviour
         */
 
         //メッシュの作成
-        //wing_membraneMesh = new Mesh();
+        //createMesh();
+
+
+
+
     }
 
     // Update is called once per frame
