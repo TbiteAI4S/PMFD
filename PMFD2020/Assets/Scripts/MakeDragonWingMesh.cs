@@ -9,7 +9,6 @@ public class MakeDragonWingMesh : MonoBehaviour
     //ドラゴンボーンのデータ
     DragonBorneData dbd;
     WingBorneData wbd;
-
     /* パラメータ */
     WingParameter wingParameter;
 
@@ -22,18 +21,18 @@ public class MakeDragonWingMesh : MonoBehaviour
         //翼の上腕
         new Vector3(0.0f,3.0f,0.0f),
         new Vector3(1.2f,6.0f,0.0f),
-        //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
-        //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
         //翼の指内1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(2.2f,3.7f,0.0f),
         //翼の指内2
         new Vector3(2.2f,3.7f,0.0f),
         new Vector3(4.6f,1.3f,0.0f),
+        //翼の指中央1
+        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(3.9f,5.7f,0.0f),
+        //翼の指中央2
+        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(7.7f,4.4f,0.0f),
         //翼の指外1
         new Vector3(1.2f,6.0f,0.0f),
         new Vector3(5.2f,8.0f,0.0f),
@@ -53,7 +52,6 @@ public class MakeDragonWingMesh : MonoBehaviour
         new Vector3(7.7f,4.4f,0.0f),    //翼の指中央2の先
         new Vector3(9.4f,7.5f,0.0f),    //翼の指外2の先
     };
-
     //端点での速度
     Vector3[] wing_velocity =
     {
@@ -86,15 +84,14 @@ public class MakeDragonWingMesh : MonoBehaviour
         // ↓翼膜用に追加の4点（胴体側から順に）
         //翼膜1
         new Vector3(1.0f, 0.0f, 0.0f),  //翼の下腕の根本
-        new Vector3(1.0f, 0.0f, 0.0f),   //翼の指内2の先
+        new Vector3(1.0f, 0.0f, 0.0f),  //翼の指内2の先
         //翼膜2
-        new Vector3(1.0f, 0.0f, 0.0f),    //翼の指内2の先
-        new Vector3(1.0f, 0.0f, 0.0f),    //翼の指中央2の先
+        new Vector3(1.0f, 0.0f, 0.0f),  //翼の指内2の先
+        new Vector3(1.0f, 0.0f, 0.0f),  //翼の指中央2の先
         //翼膜3
-        new Vector3(1.0f, 0.0f, 0.0f),    //翼の指中央2の先
-        new Vector3(1.0f, 0.0f, 0.0f),    //翼の指外2の先
+        new Vector3(1.0f, 0.0f, 0.0f),  //翼の指中央2の先
+        new Vector3(1.0f, 0.0f, 0.0f),  //翼の指外2の先
     };
-
     //張り
     float[] wing_tension =
     {   /* 始点, 終点 */
@@ -123,7 +120,6 @@ public class MakeDragonWingMesh : MonoBehaviour
         1.0f,   //翼の指中央2の先
         1.0f,   //翼の指外2の先
     };
-
     //方向
     float[] wing_direction =
     {   /* 始点, 終点 */
@@ -158,8 +154,7 @@ public class MakeDragonWingMesh : MonoBehaviour
     const int stepwing5_6_7 = 9;
 
     //翼膜の頂点
-    Vector3[][] wingVertex = new Vector3[11][];     //最初に生成    [11][5]
-    Vector3[][] wing_membrane = new Vector3[7][];   //Mesh用の頂点  [7][9]
+    Vector3[][] wingVertex = new Vector3[11][];     //最初に生成[11][5]
     Vector3[] wing_membraneVertex = new Vector3[63];//Meshに使用する配列
 
     //翼膜のメッシュ
@@ -168,6 +163,7 @@ public class MakeDragonWingMesh : MonoBehaviour
     MeshFilter meshFilter;
 
     //翼膜メッシュの頂点リスト
+    int[] wing_triangles = new int[198];
     int[] wing_triangles1 = { 0,10, 1,   1,10, 2,   2,10,11,   2,11, 3,   3,11,12,   3,12, 4,   4,12,13,
                              36, 7,37,  37, 7, 6,  37, 6,38,  38, 6, 5,  38, 5,39,  39, 5, 4,  39, 4,40,
                              17,43,16,  16,43,15,  15,43,42,  15,42,14,  14,42,41,  14,41,13,  13,41,40,
@@ -176,12 +172,13 @@ public class MakeDragonWingMesh : MonoBehaviour
                              17,16,46,  46,16,15,  46,15,47,  47,15,14,  47,14,48,  48,14,13,  48,13,49,
                              26,52,25,  25,52,51,  25,51,24,  24,51,50,  24,50,23,  23,50,49,  23,49,22,
                              13,22,49};
-    int[] wing_triangles3 = new int[66];
+    int[] wing_triangles3 = {18,28,19,  19,28,20,  20,28,29,  20,29,21,  21,29,30,  21,30,31,  21,31,22,
+                             26,25,55,  55,25,24,  55,24,56,  56,24,23,  56,23,57,  57,23,22,  57,22,58,
+                             35,61,34,  34,61,60,  33,61,60,  33,60,32,  32,60,59,  32,59,31,  31,59,58,
+                             22,31,58};
 
     //翼膜の頂点を作成
-    /*
-     * velocityを計算して曲線を作りboneArrayに渡す
-     */
+    /* velocityを計算して曲線を作りboneArrayに渡す */
     void makewingVertex(Vector3[][] wingVertexArray)
     {
         for (int j = 0; j < 22; j = j + 2)//始点と終点のvelocityの計算をパーツの個数分行う
@@ -191,7 +188,6 @@ public class MakeDragonWingMesh : MonoBehaviour
             wing_velocity[j].y = wing_tension[j] * Mathf.Sin(wing_direction[j]);
             wing_velocity[j + 1].x = wing_tension[j + 1] * Mathf.Cos(wing_direction[j + 1]);
             wing_velocity[j + 1].y = wing_tension[j + 1] * Mathf.Sin(wing_direction[j + 1]);
-
             //翼の腕・指の場合
             if (j < 16)
             {
@@ -216,67 +212,81 @@ public class MakeDragonWingMesh : MonoBehaviour
                 wingVertexArray[j / 2] = p;
             }            
         }
-    }
+    }    
 
-    //翼膜の頂点からMeshの頂点に変換
-    /*
-     * 最初の配列からMesh用の配列に変換
-     */
-    void makeMeshVertex(Vector3[][] wingVertexArray, Vector3[][] wing_membraneArray)
-    {
-        //wingVertexArrayの j と j+1 の配列を1つにする
-        //配列 j+1 の初めは j の最後と同じなため統合する
-        //対象は翼膜1～3以外
-        for (int i = 0; i < 4; i++)
-        {
-            int j = 2 * i;
-            Vector3[] wing = new Vector3[wingVertexArray[j].Length + wingVertexArray[j + 1].Length - 1];
-            Array.Copy(wingVertexArray[j], wing, wingVertexArray[j].Length);
-            Array.Copy(wingVertexArray[j + 1], 1, wing, wingVertexArray[j].Length, wingVertexArray[j + 1].Length - 1);
-            //Mesh用配列に渡す
-            wing_membraneArray[i] = wing;
-        }
-        //翼膜1～3をMesh用に渡す
-        for(int i = 0; i < 3; i++)
-        {
-            int j = i + 8;
-            int k = i + 4;
-            wing_membraneArray[k] = wingVertexArray[j];
-        }
-        
-    }
-
-    //翼膜meshを作成
+    //翼膜mesh頂点を作成
     void makeWingMeshVertex(Vector3[][] wingVertexArray, Vector3[] wing_membraneVertexArray)
     {
-        //wingVertexArrayの j と j+1 の配列を1つにする
-        //配列 j+1 の初めは j の最後と同じなため統合する
-        //対象は翼膜1～3以外
+        //wing_membraneVertexArrayの配列番号
+        int num = 0;
+        //対象は翼膜1～3以外をmesh用配列に渡す
         for (int i = 0; i < 4; i++)
         {
+            //wingVertexArrayの j と j+1 の配列を1つにする
+            //配列 j+1 の初めは j の最後と同じなため統合する
             int j = 2 * i;
             Vector3[] wing = new Vector3[wingVertexArray[j].Length + wingVertexArray[j + 1].Length - 1];
             Array.Copy(wingVertexArray[j], wing, wingVertexArray[j].Length);
             Array.Copy(wingVertexArray[j + 1], 1, wing, wingVertexArray[j].Length, wingVertexArray[j + 1].Length - 1);
             //Mesh用配列に渡す
-            wing_membraneArray[i] = wing;
+            if (i == 0)//最初は逆順に渡す
+            {
+               for(int k = 0; k < 9; k++)
+               {
+                    int reverse = 8 - k;
+                    wing_membraneVertexArray[num] = wing[reverse];
+                    //Debug.Log("num=" + reverse);
+                    num += 1;
+               }
+            }
+            else//残りはそのままの順で配列に渡す
+            {
+                for (int k = 0; k < 9; k++)
+                {
+                    wing_membraneVertexArray[num] = wing[k];
+                    //Debug.Log("num=" + num);
+                    num += 1;
+                }
+            }
         }
         //翼膜1～3をMesh用に渡す
         for (int i = 0; i < 3; i++)
         {
+            //wingVertexArray[8]～[10]が対象
             int j = i + 8;
-            for(int k = 0; k < 9; k++)
+            //wing_membraneVertexArray[36]から翼膜1～3を入れていく
+            for (int k = 0; k < 9; k++)
             {
-                //wing_membraneVertexArray[36]から翼膜1～3を入れていく
-                int num = k + 36;
                 wing_membraneVertexArray[num] = wingVertexArray[j][k];
+                //Debug.Log("num=" + num);
+                num += 1;
             }
-            
+        }
+    }
+
+    //翼膜wing_trianglesを作成
+    void makeWing_triangles()
+    {
+        int index = 0;
+        for(int i = 0; i < 66; i++)
+        {
+            wing_triangles[index] = wing_triangles1[i];
+            index += 1;
+        }
+        for (int i = 0; i < 66; i++)
+        {
+            wing_triangles[index] = wing_triangles2[i];
+            index += 1;
+        }
+        for (int i = 0; i < 66; i++)
+        {
+            wing_triangles[index] = wing_triangles3[i];
+            index += 1;
         }
     }
 
     //翼のメッシュを作成
-    private void createMesh(Vector3[] vertexList, int[] meshTriangles)
+    void createMesh(Vector3[] vertexList, int[] meshTriangles)
     {
         //メッシュを作る
         wing_membraneMesh = new Mesh();
@@ -297,32 +307,21 @@ public class MakeDragonWingMesh : MonoBehaviour
     {
         //curveのスクリプト取得
         curvescript = GameObject.Find("Curve").GetComponent<Curve>();
-
         //ドラゴンボーンのデータのスクリプトを取得
         dbd = GameObject.Find("Doragon").GetComponent<DragonBorneData>();
         wbd = GameObject.Find("Doragon").GetComponent<WingBorneData>();
-
         //パラメータスクリプトの取得
         wingParameter = GameObject.Find("wingPanel").GetComponent<WingParameter>();
-
 
         //ドラゴンボーンの作成
         makewingVertex(wingVertex);
         //mesh用の配列に変換
-        makeMeshVertex(wingVertex, wing_membrane);
-        /*
-        for (int i = 0; i < wing_membrane[0].Length; i++)
-        {
-            Debug.Log("wing_membrane" + wing_membrane[0][i]);
-        }
-        */
+        makeWingMeshVertex(wingVertex, wing_membraneVertex);
+        //meshのtrianglesを作成
+        makeWing_triangles();
 
         //メッシュの作成
-        //createMesh();
-
-
-
-
+        createMesh(wing_membraneVertex, wing_triangles);
     }
 
     // Update is called once per frame

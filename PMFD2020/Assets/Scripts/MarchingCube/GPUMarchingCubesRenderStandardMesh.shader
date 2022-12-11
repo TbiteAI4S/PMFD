@@ -2,16 +2,18 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
 {
     Properties
     {
+        //分割数
         _SegmentNum("SegmentNum", int) = 32
-
+        //大きさ
         _Scale("Scale", float) = 1
+        //閾値
         _Threashold("Threashold", float) = 0.5
-
+        //色
         _DiffuseColor("Diffuse", Color) = (0,0,0,1)
-
+        //発光
         _EmissionIntensity("Emission Intensity", Range(0,1)) = 1
         _EmissionColor("Emission", Color) = (0,0,0,1)
-
+        //光沢
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
     }
@@ -27,7 +29,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
         #include "UnityCG.cginc"
         #include "Lighting.cginc"
         #include "UnityPBSLighting.cginc"
-
+        //オリジナルのinclude
         #include "Primitives.cginc"
         #include "Utils.cginc"
 
@@ -69,6 +71,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
 
         //カラー
         float4 _DiffuseColor;
+
         float3 _HalfSize;
         float4x4 _Matrix;
 
@@ -94,6 +97,7 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             if ((x <= 1) || (y <= 1) || (z <= 1) || (x >= (_SegmentNum - 1)) || (y >= (_SegmentNum - 1)) || (z >= (_SegmentNum - 1)))
                 return 0;
 
+            //キューブのサイズ = (分割数)^3
             float3 size = float3(_SegmentNum, _SegmentNum, _SegmentNum);
 
             float3 pos = float3(x, y, z) / size;
