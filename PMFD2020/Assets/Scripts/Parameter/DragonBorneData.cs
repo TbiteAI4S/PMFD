@@ -29,22 +29,21 @@ public class DragonBorneData : MonoBehaviour
         new Vector3(5.1f, -0.5f, 0.0f),
         new Vector3(10.8f, -0.9f, 0.0f),
 
-        /* 左側 */
         //上腕 upper_arm
         new Vector3(-1.2f, -1.8f, 0.0f),
-        new Vector3(-1.1f, -3.7f, 0.0f),
+        new Vector3(-1.1f, -3.7f, -0.7f),
         //前腕 forearm
-        new Vector3(-1.1f, -3.7f, 0.0f),
-        new Vector3(-2.8f, -5.2f, 0.0f),
+        new Vector3(-1.1f, -3.7f, -0.7f),
+        new Vector3(-2.8f, -5.2f, -0.7f),
         //大腿 thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -3.2f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
         //下腿 lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.7f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.7f, -0.7f),
         //足 foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
     //張り
     public float[] nomaltension =
@@ -61,7 +60,6 @@ public class DragonBorneData : MonoBehaviour
         //尾 tail
         1.0f,1.0f,
 
-        /* 左側 */
         //上腕 upper_arm
         3.2f,-0.2f,
         //前腕 forearm
@@ -89,7 +87,6 @@ public class DragonBorneData : MonoBehaviour
         //尾 tail
         0.0f,0.0f,
 
-        /* 左側 */
         //上腕 left_upper_arm
         0.0f,0.0f,
         //前腕 left_forearm
@@ -124,19 +121,19 @@ public class DragonBorneData : MonoBehaviour
         /* 左側 */
         //左上腕 left_upper_arm
         new Vector3(-1.5f, -1.8f, 0.0f),
-        new Vector3(-1.1f, -2.7f, 0.0f),
+        new Vector3(-1.1f, -2.7f, -0.7f),
         //左前腕 left_forearm
-        new Vector3(-1.1f, -2.7f, 0.0f),
-        new Vector3(-2.8f, -5.2f, 0.0f),
+        new Vector3(-1.1f, -2.7f, -0.7f),
+        new Vector3(-2.8f, -5.2f, -0.7f),
         //左大腿 left_thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -2.2f, 0.0f),
+        new Vector3(4.5f, -2.2f, -0.7f),
         //左下腿 left_lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.2f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.2f, -0.7f),
         //左足 left_foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
     //張り
     public float[] mintension =
@@ -216,19 +213,19 @@ public class DragonBorneData : MonoBehaviour
         /* 左側 */
         //左上腕 left_upper_arm
         new Vector3(-1.5f, -1.8f, 0.0f),
-        new Vector3(-1.1f, -4.7f, 0.0f),
+        new Vector3(-1.1f, -4.7f, -0.7f),
         //左前腕 left_forearm
-        new Vector3(-1.1f, -4.7f, 0.0f),
-        new Vector3(-2.8f, -5.2f, 0.0f),
+        new Vector3(-1.1f, -4.7f, -0.7f),
+        new Vector3(-2.8f, -5.2f, -0.7f),
         //左大腿 left_thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -4.2f, 0.0f),
+        new Vector3(4.5f, -4.2f, -0.7f),
         //左下腿 left_lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.7f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.7f, -0.7f),
         //左足 left_foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
     //張り
     public float[] maxtension =

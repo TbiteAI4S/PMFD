@@ -11,10 +11,10 @@ public class ArmParameter : MonoBehaviour
     {
         //上腕 upper_arm
         new Vector3(-1.2f, -1.8f, 0.0f),
-        new Vector3(-1.1f, -3.7f, 0.0f),
+        new Vector3(-1.1f, -3.7f, -0.7f),
         //前腕 forearm
-        new Vector3(-1.1f, -3.7f, 0.0f),
-        new Vector3(-2.8f, -5.2f, 0.0f),
+        new Vector3(-1.1f, -3.7f, -0.7f),
+        new Vector3(-2.8f, -5.2f, -0.7f),
     };
 
     public Vector3[] right_arm_position =

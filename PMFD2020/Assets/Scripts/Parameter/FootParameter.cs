@@ -11,26 +11,26 @@ public class FootParameter : MonoBehaviour
     {
         //大腿 thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -3.2f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
         //下腿 lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.7f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.7f, -0.7f),
         //足 foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
 
     public Vector3[] right_foot_position =
     {
         //大腿 thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -3.2f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
         //下腿 lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.7f, 0.0f),
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.7f, -0.7f),
         //足 foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
 
     public float[] foot_tension =

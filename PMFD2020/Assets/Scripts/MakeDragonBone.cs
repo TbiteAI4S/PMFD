@@ -8,9 +8,6 @@ using UnityEngine.UIElements;
 public class MakeDragonBone : MonoBehaviour
 {
     Curve curvescript;
-    //ドラゴンボーンのデータ
-    DragonBorneData dbd;
-    WingBorneData wbd;
 
     /* パラメータ */
     HeadParameter headParameter;
@@ -40,22 +37,22 @@ public class MakeDragonBone : MonoBehaviour
         new Vector3(5.1f, -0.5f, 0.0f),
         new Vector3(12.8f, -0.9f, 0.0f),
 
-        /* 左側 */
-        //左上腕 left_upper_arm
+
+        //上腕 upper_arm
         new Vector3(-1.5f, -1.8f, 0.0f),
-        new Vector3(-1.1f, -4.7f, 0.0f),
-        //左前腕 left_forearm
-        new Vector3(-1.1f, -4.7f, 0.0f),
-        new Vector3(-2.8f, -5.2f, 0.0f),
-        //左大腿 left_thigh
+        new Vector3(-1.1f, -4.7f, -0.7f),
+        //前腕 forearm
+        new Vector3(-1.1f, -4.7f, -0.7f),
+        new Vector3(-2.8f, -5.2f, -0.7f),
+        //大腿 thigh
         new Vector3(4.3f, -1.6f, 0.0f),
-        new Vector3(4.5f, -4.2f, 0.0f),
-        //左下腿 left_lower_leg
-        new Vector3(4.5f, -3.2f, 0.0f),
-        new Vector3(4.3f, -4.7f, 0.0f),
-        //左足 left_foot
-        new Vector3(4.3f, -4.7f, 0.0f),
-        new Vector3(2.9f, -5.4f, 0.0f)
+        new Vector3(4.5f, -4.2f, -0.7f),
+        //下腿 lower_leg
+        new Vector3(4.5f, -3.2f, -0.7f),
+        new Vector3(4.3f, -4.7f, -0.7f),
+        //足 foot
+        new Vector3(4.3f, -4.7f, -0.7f),
+        new Vector3(2.9f, -5.4f, -0.7f)
     };
 
     //端点での速度
@@ -76,39 +73,22 @@ public class MakeDragonBone : MonoBehaviour
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
 
-        /* 左側 */
-        //上腕 left_upper_arm
+        //上腕 upper_arm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //前腕 left_forearm
+        //前腕 forearm
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //大腿 left_thigh
+        //大腿 thigh
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //下腿 left_lower_leg
+        //下腿 lower_leg
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
-        //足 left_foot
+        //足 foot
         new Vector3(1.0f, 0.0f, 0.0f),
         new Vector3(1.0f, 0.0f, 0.0f),
 
-        /* 右側 */
-        //上腕 right_upper_arm
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
-        //前腕 right_forearm
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
-        //大腿 right_thigh
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
-        //下腿 right__lower_leg
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f),
-        //足 right_foot
-        new Vector3(1.0f, 0.0f, 0.0f),
-        new Vector3(1.0f, 0.0f, 0.0f)
     };
 
     //張り
@@ -170,28 +150,28 @@ public class MakeDragonBone : MonoBehaviour
     {
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(0.0f,3.0f,0.0f),
+        new Vector3(0.0f,3.0f,-0.7f),
         //翼の上腕
-        new Vector3(0.0f,3.0f,0.0f),
-        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(0.0f,3.0f,-0.7f),
+        new Vector3(1.2f,6.0f,-1.2f),
         //翼の指内1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(2.2f,3.7f,-1.6f),
         //翼の指内2
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
+        new Vector3(2.2f,3.7f,-1.6f),
+        new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(3.9f,5.7f,-2.1f),
         //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
+        new Vector3(3.9f,5.7f,-1.6f),
+        new Vector3(7.7f,4.4f,-2.1f),
         //翼の指外1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(5.2f,8.0f,-1.6f),
         //翼の指外2
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
+        new Vector3(5.2f,8.0f,-1.6f),
+        new Vector3(9.4f,7.5f,-2.1f),
 
     };
 
@@ -263,7 +243,9 @@ public class MakeDragonBone : MonoBehaviour
 
     //ドラゴンボーン
     public Vector3[][] dragonbone;
+    public Vector3[][] right_arm_leg_dragonbone;
     public Vector3[][] wing_dragonbone;
+    public Vector3[][] right_wign_dragonborne;
 
     //マテリアル
     private Material mat;
@@ -272,9 +254,6 @@ public class MakeDragonBone : MonoBehaviour
     [SerializeField] private Renderer _renderer;
 
     ////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    LineRenderer lineRenderer;
 
     /*-----関数-----*/
 
@@ -302,7 +281,7 @@ public class MakeDragonBone : MonoBehaviour
             boneArray[j / 2] = p;
         }
     }
-
+    //翼のドラゴンボーン作成
     public void makewingbone(Vector3[][] wingboneArray)
     {
         for (int j = 0; j < 16; j = j + 2)//始点と終点のvelocityの計算をパーツの個数分行う
@@ -321,6 +300,34 @@ public class MakeDragonBone : MonoBehaviour
             }
             //曲線を渡す
             wingboneArray[j / 2] = p;
+        }
+    }
+
+    //左右対称のパーツを作成(右側の腕，足，翼)
+    void make_rightparts(Vector3[][] boneArray, Vector3[][] right_boneArray, Vector3[][] wingboneArray, Vector3[][] wingright_boneArray)
+    {
+        //腕と足
+        for (int i = 0; i < 5; i++)
+        {
+            //腕の足はindex5から始まる
+            int k = i + 5;
+            Vector3[] inversion = new Vector3[boneArray[k].Length];
+            //z座標を反転する
+            for (int j = 0; j < boneArray[k].Length; j++)
+            {
+                inversion[j] = new Vector3(boneArray[k][j].x, boneArray[k][j].y, -1.0f * boneArray[k][j].z);
+            }
+            right_boneArray[i] = inversion;
+        }
+        //翼
+        for (int i = 0; i < 8; i++)
+        {
+            Vector3[] wing_inversion = new Vector3[wingboneArray[i].Length];
+            for (int j = 0; j < wingboneArray[i].Length; j++)
+            {
+                wing_inversion[j] = new Vector3(boneArray[i][j].x, boneArray[i][j].y, -1.0f * boneArray[i][j].z);
+            }
+            wingright_boneArray[i] = wing_inversion;
         }
     }
 
@@ -359,10 +366,6 @@ public class MakeDragonBone : MonoBehaviour
         //curveのスクリプト取得
         curvescript = GameObject.Find("Curve").GetComponent<Curve>();
 
-        //ドラゴンボーンのデータのスクリプトを取得
-        dbd = GameObject.Find("Doragon").GetComponent<DragonBorneData>();
-        wbd = GameObject.Find("Doragon").GetComponent<WingBorneData>();
-
         //パラメータスクリプトの取得
         headParameter = GameObject.Find("headPanel").GetComponent<HeadParameter>();
         bodyParameter = GameObject.Find("bodyPanel").GetComponent<BodyParameter>();
@@ -372,11 +375,15 @@ public class MakeDragonBone : MonoBehaviour
 
         //配列の初期化
         dragonbone = new Vector3[10][];
+        right_arm_leg_dragonbone = new Vector3[5][];
         wing_dragonbone = new Vector3[8][];
+        right_wign_dragonborne = new Vector3[8][];
 
         //各パーツでドラゴンボーン作成
         makebone(dragonbone);
         makewingbone(wing_dragonbone);
+        //左右対称のパーツを作成
+        make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
 
         
     }
@@ -426,5 +433,24 @@ public class MakeDragonBone : MonoBehaviour
         //ドラゴンボーンを作る
         makebone(dragonbone);
         makewingbone(wing_dragonbone);
+        //左右対称のパーツを作成
+        make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
+
+        /*
+        for (int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j< wing_position.Length; j++)
+            {
+                Debug.Log("wing_position[" + j + "]" + wing_position[j]);
+            }
+        
+            for (int j = 0; j < wing_dragonbone[i].Length; j++)
+            {
+                Debug.Log("wing_dragonbone[" + i + "][" + j + "]" + wing_dragonbone[i][j]);
+            }
+        
+        }
+        */
+        
     }
 }

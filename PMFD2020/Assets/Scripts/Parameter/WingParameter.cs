@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WingParameter : MonoBehaviour
 {
-    DragonBorneData dbd;
     WingBorneData wbd;
     WingParameterUI wingParameterUI;
 
@@ -12,56 +11,28 @@ public class WingParameter : MonoBehaviour
     {
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(0.0f,3.0f,0.0f),
-        //翼の上腕（前腕）
-        new Vector3(0.0f,3.0f,0.0f),
-        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(0.0f,3.0f,-0.7f),
+        //翼の上腕
+        new Vector3(0.0f,3.0f,-0.7f),
+        new Vector3(1.2f,6.0f,-1.2f),
         //翼の指内1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(2.2f,3.7f,-1.6f),
         //翼の指内2
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
+        new Vector3(2.2f,3.7f,-1.6f),
+        new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(3.9f,5.7f,-2.1f),
         //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
+        new Vector3(3.9f,5.7f,-1.6f),
+        new Vector3(7.7f,4.4f,-2.1f),
         //翼の指外1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(5.2f,8.0f,-1.6f),
         //翼の指外2
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
-    };
-
-    public Vector3[] right_wing_position =
-    {
-       //翼の下腕
-        new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(0.0f,3.0f,0.0f),
-        //翼の上腕（前腕）
-        new Vector3(0.0f,3.0f,0.0f),
-        new Vector3(1.2f,6.0f,0.0f),
-        //翼の指内1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
-        //翼の指内2
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
-        //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
-        //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
-        //翼の指外1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
-        //翼の指外2
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
+        new Vector3(5.2f,8.0f,-1.6f),
+        new Vector3(9.4f,7.5f,-2.1f),
     };
 
     public float[] wing_tension =
@@ -148,7 +119,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     left_wing_position[i] = baseP[i];
-                    right_wing_position[i] = baseP[i];
                     wing_tension[i] = baseT[i];
                     wing_direction[i] = baseD[i];
                 }
@@ -159,7 +129,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の1,3を使う
                     left_wing_position[i] = wing_positiondistance[2 * i + 1];
-                    right_wing_position[i] = wing_positiondistance[2 * i + 1];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -169,7 +138,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     left_wing_position[i] = maxP[i];
-                    right_wing_position[i] = maxP[i];
                     wing_tension[i] = maxT[i];
                     wing_direction[i] = maxD[i];
                 }
@@ -180,7 +148,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の0,2を使う
                     left_wing_position[i] = wing_positiondistance[2 * i];
-                    right_wing_position[i] = wing_positiondistance[2 * i];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -190,7 +157,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     left_wing_position[i] = minP[i];
-                    right_wing_position[i] = minP[1];
                     wing_tension[i] = minT[i];
                     wing_direction[i] = minD[i];
                 }
@@ -204,7 +170,7 @@ public class WingParameter : MonoBehaviour
 
     //上腕の長さを変更
     void change_wingforearm_long(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
-        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long, Vector3 right_long)
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long)
     {
         switch (parameterNum)
         {
@@ -212,7 +178,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 2; i < 4; i++)
                 {
                     left_wing_position[i] = baseP[i];
-                    right_wing_position[i] = baseP[i];
                     wing_tension[i] = baseT[i];
                     wing_direction[i] = baseD[i];
                 }
@@ -223,7 +188,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の1,3を使う
                     left_wing_position[i] = wing_positiondistance[2 * i + 1];
-                    right_wing_position[i] = wing_positiondistance[2 * i + 1];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -233,7 +197,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 2; i < 4; i++)
                 {
                     left_wing_position[i] = maxP[i];
-                    right_wing_position[i] = maxP[i];
                     wing_tension[i] = maxT[i];
                     wing_direction[i] = maxD[i];
                 }
@@ -244,7 +207,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の0,2を使う
                     left_wing_position[i] = wing_positiondistance[2 * i];
-                    right_wing_position[i] = wing_positiondistance[2 * i];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -254,7 +216,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 2; i < 4; i++)
                 {
                     left_wing_position[i] = minP[i];
-                    right_wing_position[i] = minP[1];
                     wing_tension[i] = minT[i];
                     wing_direction[i] = minD[i];
                 }
@@ -269,14 +230,12 @@ public class WingParameter : MonoBehaviour
         {
             Vector3 left_wing_correction = left_wing_position[i] + left_long;
             left_wing_position[i] = left_wing_correction;
-            Vector3 right_wing_correction = right_wing_position[i] + right_long;
-            right_wing_position[i] = right_wing_correction;
         }
     }
 
     //翼のサイズを変更
     void change_wing_size(Vector3[] baseP, float[] baseT, float[] baseD, Vector3[] maxP, float[] maxT, float[] maxD,
-        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long, Vector3 right_long)
+        Vector3[] minP, float[] minT, float[] minD, int parameterNum, Vector3 left_long)
     {
         switch (parameterNum)
         {
@@ -284,7 +243,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 4; i < 16; i++)
                 {
                     left_wing_position[i] = baseP[i];
-                    right_wing_position[i] = baseP[i];
                     wing_tension[i] = baseT[i];
                     wing_direction[i] = baseD[i];
                 }
@@ -295,7 +253,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の1,3を使う
                     left_wing_position[i] = wing_positiondistance[2 * i + 1];
-                    right_wing_position[i] = wing_positiondistance[2 * i + 1];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -305,7 +262,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 4; i < 16; i++)
                 {
                     left_wing_position[i] = maxP[i];
-                    right_wing_position[i] = maxP[i];
                     wing_tension[i] = maxT[i];
                     wing_direction[i] = maxD[i];
                 }
@@ -316,7 +272,6 @@ public class WingParameter : MonoBehaviour
                 {
                     //線形補間の0,2を使う
                     left_wing_position[i] = wing_positiondistance[2 * i];
-                    right_wing_position[i] = wing_positiondistance[2 * i];
                     wing_tension[i] = wing_tension_abs[i];
                     wing_direction[i] = wing_direction_abs[i];
                 }
@@ -326,7 +281,6 @@ public class WingParameter : MonoBehaviour
                 for (int i = 4; i < 16; i++)
                 {
                     left_wing_position[i] = minP[i];
-                    right_wing_position[i] = minP[1];
                     wing_tension[i] = minT[i];
                     wing_direction[i] = minD[i];
                 }
@@ -341,8 +295,6 @@ public class WingParameter : MonoBehaviour
         {
             Vector3 left_wing_correction = left_wing_position[i] + left_long;
             left_wing_position[i] = left_wing_correction;
-            Vector3 right_wing_correction = right_wing_position[i] + right_long;
-            right_wing_position[i] = right_wing_correction;
         }
     }
 
@@ -352,7 +304,6 @@ public class WingParameter : MonoBehaviour
     void Start()
     {
         //データのスクリプトを取得
-        dbd = GameObject.Find("Doragon").GetComponent<DragonBorneData>();
         wbd = GameObject.Find("Doragon").GetComponent<WingBorneData>();
         wingParameterUI = GameObject.Find("wingPanel").GetComponent<WingParameterUI>();
 
@@ -398,22 +349,20 @@ public class WingParameter : MonoBehaviour
 
         //下腕の長さを取得
         Vector3 left_wingunderarm_long = left_wing_position[1] - wbd.wing_nomalposition[1];
-        Vector3 right_wingunderarm_long = right_wing_position[1] - wbd.wing_nomalposition[1];
 
         //上腕の長さを変更
         change_wingforearm_long(wbd.wing_nomalposition, wbd.wing_nomaltension, wbd.wing_nomaldirection, 
             wbd.wing_maxposition, wbd.wing_maxtension, wbd.wing_maxdirection, 
             wbd.wing_minposition, wbd.wing_mintension, wbd.wing_mindirection,
-            check_wingforearm_long, left_wingunderarm_long, right_wingunderarm_long);
+            check_wingforearm_long, left_wingunderarm_long);
 
         //上腕の長さを変更
         Vector3 left_wingforearm_long = left_wing_position[3] - wbd.wing_nomalposition[3];
-        Vector3 right_wingforearm_long = right_wing_position[3] - wbd.wing_nomalposition[3];
 
         //翼のサイズを変更
         change_wing_size(wbd.wing_nomalposition, wbd.wing_nomaltension, wbd.wing_nomaldirection,
             wbd.wing_maxposition, wbd.wing_maxtension, wbd.wing_maxdirection,
             wbd.wing_minposition, wbd.wing_mintension, wbd.wing_mindirection,
-            check_wingforearm_size, left_wingforearm_long, right_wingforearm_long);
+            check_wingforearm_size, left_wingforearm_long);
     }
 }

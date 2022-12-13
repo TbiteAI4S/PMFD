@@ -9,28 +9,28 @@ public class WingBorneData : MonoBehaviour
     {
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(0.0f,3.0f,0.0f),
+        new Vector3(0.0f,3.0f,-0.7f),
         //翼の上腕
-        new Vector3(0.0f,3.0f,0.0f),
-        new Vector3(1.2f,6.0f,0.0f),
+        new Vector3(0.0f,3.0f,-0.7f),
+        new Vector3(1.2f,6.0f,-1.2f),
         //翼の指内1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(2.2f,3.7f,-1.6f),
         //翼の指内2
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
+        new Vector3(2.2f,3.7f,-1.6f),
+        new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(3.9f,5.7f,-2.1f),
         //翼の指中央2
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
+        new Vector3(3.9f,5.7f,-1.6f),
+        new Vector3(7.7f,4.4f,-2.1f),
         //翼の指外1
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(5.2f,8.0f,-1.6f),
         //翼の指外2
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
+        new Vector3(5.2f,8.0f,-1.6f),
+        new Vector3(9.4f,7.5f,-2.1f),
     };
 
     public float[] wing_nomaltension =
@@ -73,28 +73,28 @@ public class WingBorneData : MonoBehaviour
     {
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(-0.2f,2.9f,0.0f),
+        new Vector3(-0.2f,2.9f,-0.7f),
         //翼の上腕
-        new Vector3(-0.2f,2.9f,0.0f),
-        new Vector3(-1.4f,5.2f,0.0f),
+        new Vector3(-0.2f,2.9f,-0.7f),
+        new Vector3(-1.4f,5.2f,-1.2f),
         //翼の指内
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(2.2f,3.7f,-1.6f),
         //
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
+        new Vector3(2.2f,3.7f,-1.6f),
+        new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(3.9f,5.7f,-1.6f),
         //
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
+        new Vector3(3.9f,5.7f,-1.6f),
+        new Vector3(7.7f,4.4f,-2.1f),
         //翼の指外
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(5.2f,8.0f,-1.6f),
         //
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
+        new Vector3(5.2f,8.0f,-1.6f),
+        new Vector3(9.4f,7.5f,-2.1f),
 
     };
 
@@ -138,28 +138,28 @@ public class WingBorneData : MonoBehaviour
     {
         //翼の下腕
         new Vector3(-1.2f,-0.2f,0.0f),
-        new Vector3(-0.2f,2.9f,0.0f),
+        new Vector3(-0.2f,2.9f,-0.7f),
         //翼の上腕
-        new Vector3(-0.2f,2.9f,0.0f),
-        new Vector3(-1.4f,5.2f,0.0f),
+        new Vector3(-0.2f,2.9f,-0.7f),
+        new Vector3(-1.4f,5.2f,-1.2f),
         //翼の指内
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(2.2f,3.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(2.2f,3.7f,-1.6f),
         //
-        new Vector3(2.2f,3.7f,0.0f),
-        new Vector3(4.6f,1.3f,0.0f),
+        new Vector3(2.2f,3.7f,-1.6f),
+        new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(3.9f,5.7f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(3.9f,5.7f,-1.6f),
         //
-        new Vector3(3.9f,5.7f,0.0f),
-        new Vector3(7.7f,4.4f,0.0f),
+        new Vector3(3.9f,5.7f,-1.6f),
+        new Vector3(7.7f,4.4f,-2.1f),
         //翼の指外
-        new Vector3(1.2f,6.0f,0.0f),
-        new Vector3(5.2f,8.0f,0.0f),
+        new Vector3(1.2f,6.0f,-1.2f),
+        new Vector3(5.2f,8.0f,-1.6f),
         //
-        new Vector3(5.2f,8.0f,0.0f),
-        new Vector3(9.4f,7.5f,0.0f),
+        new Vector3(5.2f,8.0f,-1.6f),
+        new Vector3(9.4f,7.5f,-2.1f),
 
     };
 
