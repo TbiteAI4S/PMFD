@@ -29,7 +29,7 @@ public class MakeDragonWingMesh : MonoBehaviour
         new Vector3(4.6f,1.3f,-2.1f),
         //翼の指中央1
         new Vector3(1.2f,6.0f,-1.2f),
-        new Vector3(3.9f,5.7f,-2.1f),
+        new Vector3(3.9f,5.7f,-1.6f),
         //翼の指中央2
         new Vector3(3.9f,5.7f,-1.6f),
         new Vector3(7.7f,4.4f,-2.1f),
