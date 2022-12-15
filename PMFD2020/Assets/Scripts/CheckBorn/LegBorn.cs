@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class LegBorn : MonoBehaviour
 {
@@ -27,11 +28,12 @@ public class LegBorn : MonoBehaviour
         lineRenderer.endWidth = 0.2f;
 
         Vector3[] dbone = mbd.dragonbone[bornNum].Concat(mbd.dragonbone[bornNum + 1]).ToArray();
-        Vector3[] bone = dbone.Concat(mbd.dragonbone[bornNum + 2]).ToArray();
+        //Vector3[] bone = dbone.Concat(mbd.dragonbone[bornNum + 2]).ToArray();
 
         // 点の数を指定する
-        lineRenderer.positionCount = mbd.dragonbone[bornNum].Length + mbd.dragonbone[bornNum + 1].Length + mbd.dragonbone[bornNum + 2].Length;
+        lineRenderer.positionCount = mbd.dragonbone[bornNum].Length + mbd.dragonbone[bornNum + 1].Length /*+ mbd.dragonbone[bornNum + 2].Length*/;
         // 線を引く場所を指定する
-        lineRenderer.SetPositions(bone);
+        //lineRenderer.SetPositions(bone);
+        lineRenderer.SetPositions(dbone);
     }
 }

@@ -350,8 +350,8 @@ Shader "Custom/GPUMarchingCubesRenderStandardMesh"
             CGPROGRAM
             #pragma target 5.0
             #pragma vertex vert
-            #pragma geometry geom_shadow
-            #pragma fragment frag_shadow
+            //#pragma geometry geom_shadow
+            //#pragma fragment frag_shadow
             #pragma multi_compile_shadowcaster
             ENDCG
         }

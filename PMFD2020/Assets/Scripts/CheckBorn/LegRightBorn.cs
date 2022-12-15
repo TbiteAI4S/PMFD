@@ -27,11 +27,13 @@ public class LegRightBorn : MonoBehaviour
         lineRenderer.endWidth = 0.2f;
 
         Vector3[] dbone = mbd.right_arm_leg_dragonbone[bornNum].Concat(mbd.right_arm_leg_dragonbone[bornNum + 1]).ToArray();
-        Vector3[] bone = dbone.Concat(mbd.right_arm_leg_dragonbone[bornNum + 2]).ToArray();
+        //Vector3[] bone = dbone.Concat(mbd.right_arm_leg_dragonbone[bornNum + 2]).ToArray();
 
         // 点の数を指定する
-        lineRenderer.positionCount = mbd.right_arm_leg_dragonbone[bornNum].Length + mbd.right_arm_leg_dragonbone[bornNum + 1].Length + mbd.right_arm_leg_dragonbone[bornNum + 2].Length;
+        lineRenderer.positionCount = mbd.right_arm_leg_dragonbone[bornNum].Length + 
+            mbd.right_arm_leg_dragonbone[bornNum + 1].Length/* + mbd.right_arm_leg_dragonbone[bornNum + 2].Length*/;
         // 線を引く場所を指定する
-        lineRenderer.SetPositions(bone);
+        //lineRenderer.SetPositions(bone);
+        lineRenderer.SetPositions(dbone);
     }
 }
