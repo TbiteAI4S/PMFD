@@ -247,6 +247,17 @@ public class MakeDragonBone : MonoBehaviour
     public Vector3[][] wing_dragonbone;
     public Vector3[][] right_wign_dragonborne;
 
+    //シェーダーに渡す用の配列
+    public Vector3[] _Dragonborne = new Vector3[step];
+    public Vector3[] _Jawborne = new Vector3[step];
+    public Vector3[] _Neckborne = new Vector3[step];
+    public Vector3[] _Bodyborne = new Vector3[step];
+    public Vector3[] _Tailborne = new Vector3[step];
+    public Vector3[] _ArmLeftborne = new Vector3[step];
+    public Vector3[] _ArmRightborne = new Vector3[step];
+    public Vector3[] _FootLeftborne = new Vector3[step];
+    public Vector3[] _FootRightborne = new Vector3[step];
+
     //マテリアル
     private Material mat;
 
@@ -334,28 +345,18 @@ public class MakeDragonBone : MonoBehaviour
     //シェーダーに座標を渡す
     void BoneDataToShader()
     {
-        //マテリアルを取得
-        mat = _renderer.material;
-
-        //ボーンの座標をシェーダーに渡す形に変換
-        Vector3[] throwpoints = new Vector3[50];
-        int throwNum = 0;
-
-        for (int i = 0; i < dragonbone.Length; i++)//パーツの数だけ
+        for (int i = 0; i < 10; i++)
         {
-            int b = dragonbone[i].Length / 2;
-            for (int j = 0; j < b; j++)//各パーツの半分(偶数番号)のみ渡す
-            {
-                int k = j * 2;
-                throwpoints[throwNum] = dragonbone[i][k];
-                throwNum += 1;
-            }
-        }
+            _Dragonborne[i] = (dragonbone[0][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _Jawborne[i] = (dragonbone[1][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _Neckborne[i] = (dragonbone[2][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _Bodyborne[i] = (dragonbone[3][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _Tailborne[i] = (dragonbone[4][i] + new Vector3(10f, 10f, 0)) * 0.05f;
 
-        //マテリアルに座標を渡す
-        for (int i = 0; i < throwpoints.Length; i++)
-        {
-            mat.SetVector("_MPositions[" + i + "]", throwpoints[i]);
+            _ArmLeftborne[i] = (dragonbone[5][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _ArmRightborne[i] = (dragonbone[6][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _FootLeftborne[i] = (dragonbone[7][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _FootRightborne[i] = (dragonbone[8][i] + new Vector3(10f, 10f, 0)) * 0.05f;
         }
     }
 
@@ -385,7 +386,16 @@ public class MakeDragonBone : MonoBehaviour
         //左右対称のパーツを作成
         make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
 
-        
+        //テスト
+        BoneDataToShader();
+        /*
+        for (int i = 0; i < 10; i++)
+        {
+            _Dragonborne[i] = (dragonbone[0][i]+new Vector3(10f,10f,0)) * 0.05f;
+        }
+        */
+
+
     }
 
     void Update()

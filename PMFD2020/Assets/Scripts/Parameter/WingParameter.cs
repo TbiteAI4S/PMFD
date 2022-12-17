@@ -96,7 +96,7 @@ public class WingParameter : MonoBehaviour
     int check_wingunderarm_size;
     int check_wingforearm_long;
     int check_wingforearm_size;
-    int check_wing_size;
+    //int check_wing_size;
     int check_wing_number;
     int CheckChengeParameter(int checkparameterValue, int throwValue/*スライダーから来る値*/)
     {
@@ -327,7 +327,7 @@ public class WingParameter : MonoBehaviour
         check_wingunderarm_size = 0;
         check_wingforearm_long = 0;
         check_wingforearm_size = 0;
-        check_wing_size = 0;
+        //check_wing_size = 0;
         check_wing_number = 0;
     }
 

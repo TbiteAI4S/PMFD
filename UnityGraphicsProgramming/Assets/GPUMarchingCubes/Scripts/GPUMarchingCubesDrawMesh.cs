@@ -27,7 +27,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
     int vertexMax = 0;                          // 頂点数
     Mesh[] meshs = null;                        // Mesh配列
     Material[] materials = null;                // Meshごとのマテリアル配列
-    float renderScale = 1f / 30f;               // 表示スケール
+    float renderScale = 1f / 32f;               // 表示スケール
 
     MarchingCubesDefines mcDefines = null;      // MarchingCubes用定数配列群
     #endregion
@@ -36,7 +36,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
     {
         vertexMax = segmentNum * segmentNum * segmentNum;
         
-        //Debug.Log("VertexMax " + vertexMax);
+        Debug.Log("VertexMax " + vertexMax);
 
         // 1Cubeの大きさをsegmentNumで分割してレンダリング時の大きさを決める
         renderScale = 1f / segmentNum;
@@ -52,7 +52,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
         // Meshの頂点数は65535が上限なので、Meshを分割する
         int vertNum = 65535;
         int meshNum = Mathf.CeilToInt((float)vertexMax / vertNum);  // 分割するMeshの数
-        //Debug.Log("meshNum " + meshNum );
+        Debug.Log("meshNum " + meshNum );
 
         meshs = new Mesh[meshNum];
         materials = new Material[meshNum];
