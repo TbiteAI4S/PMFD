@@ -253,10 +253,11 @@ public class MakeDragonBone : MonoBehaviour
     public Vector3[] _Neckborne = new Vector3[step];
     public Vector3[] _Bodyborne = new Vector3[step];
     public Vector3[] _Tailborne = new Vector3[step];
-    public Vector3[] _ArmLeftborne = new Vector3[step];
-    public Vector3[] _ArmRightborne = new Vector3[step];
-    public Vector3[] _FootLeftborne = new Vector3[step];
-    public Vector3[] _FootRightborne = new Vector3[step];
+
+    public Vector3[] _ArmLeftborne = new Vector3[2 * step];
+    public Vector3[] _ArmRightborne = new Vector3[2* step];
+    public Vector3[] _FootLeftborne = new Vector3[2 * step];
+    public Vector3[] _FootRightborne = new Vector3[2 * step];
 
     //マテリアル
     private Material mat;
@@ -347,16 +348,25 @@ public class MakeDragonBone : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            _Dragonborne[i] = (dragonbone[0][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _Jawborne[i] = (dragonbone[1][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _Neckborne[i] = (dragonbone[2][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _Bodyborne[i] = (dragonbone[3][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _Tailborne[i] = (dragonbone[4][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _Dragonborne[i] = (dragonbone[0][i] + new Vector3(10f, 10f, 0)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _Jawborne[i] = (dragonbone[1][i] + new Vector3(10f, 10f, 0)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _Neckborne[i] = (dragonbone[2][i] + new Vector3(10f, 10f, 0)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _Bodyborne[i] = (dragonbone[3][i] + new Vector3(10f, 10f, 0)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _Tailborne[i] = (dragonbone[4][i] + new Vector3(10f, 10f, 0)) * 0.05f + new Vector3(0, 0, 0.5f);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            _ArmLeftborne[i] = (dragonbone[5][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _ArmLeftborne[i+10] = (dragonbone[6][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
 
-            _ArmLeftborne[i] = (dragonbone[5][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _ArmRightborne[i] = (dragonbone[6][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _FootLeftborne[i] = (dragonbone[7][i] + new Vector3(10f, 10f, 0)) * 0.05f;
-            _FootRightborne[i] = (dragonbone[8][i] + new Vector3(10f, 10f, 0)) * 0.05f;
+            _ArmRightborne[i] = (right_arm_leg_dragonbone[0][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _ArmRightborne[i+10] = (right_arm_leg_dragonbone[1][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+
+            _FootLeftborne[i] = (dragonbone[7][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _FootLeftborne[i+10] = (dragonbone[8][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+
+            _FootRightborne[i] = (right_arm_leg_dragonbone[2][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
+            _FootRightborne[i+10] = (right_arm_leg_dragonbone[3][i] + new Vector3(10f, 10f, 10f)) * 0.05f + new Vector3(0, 0, 0.5f);
         }
     }
 
@@ -366,7 +376,6 @@ public class MakeDragonBone : MonoBehaviour
     {
         //curveのスクリプト取得
         curvescript = GameObject.Find("Curve").GetComponent<Curve>();
-
         //パラメータスクリプトの取得
         headParameter = GameObject.Find("headPanel").GetComponent<HeadParameter>();
         bodyParameter = GameObject.Find("bodyPanel").GetComponent<BodyParameter>();
@@ -385,15 +394,13 @@ public class MakeDragonBone : MonoBehaviour
         makewingbone(wing_dragonbone);
         //左右対称のパーツを作成
         make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
-
-        //テスト
-        BoneDataToShader();
-        /*
         for (int i = 0; i < 10; i++)
         {
-            _Dragonborne[i] = (dragonbone[0][i]+new Vector3(10f,10f,0)) * 0.05f;
+            Debug.Log("_ArmLeftborne" + _ArmLeftborne[i] + ",_ArmRightborne" + _ArmRightborne[i]);
         }
-        */
+
+        //テスト
+        BoneDataToShader();    
 
 
     }
@@ -445,22 +452,6 @@ public class MakeDragonBone : MonoBehaviour
         makewingbone(wing_dragonbone);
         //左右対称のパーツを作成
         make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
-
-        /*
-        for (int i = 0; i < 8; i++)
-        {
-            for(int j = 0; j< wing_position.Length; j++)
-            {
-                Debug.Log("wing_position[" + j + "]" + wing_position[j]);
-            }
-        
-            for (int j = 0; j < wing_dragonbone[i].Length; j++)
-            {
-                Debug.Log("wing_dragonbone[" + i + "][" + j + "]" + wing_dragonbone[i][j]);
-            }
-        
-        }
-        */
         
     }
 }

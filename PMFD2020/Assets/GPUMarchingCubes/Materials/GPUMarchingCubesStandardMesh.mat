@@ -4,10 +4,11 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: GPUMarchingCubesStandardMesh
-  m_Shader: {fileID: 4800000, guid: 4bd001bc21efc2b409bf18708a222e93, type: 3}
+  m_Shader: {fileID: 4800000, guid: 543044678c7bb5f4eb17ab50aa4d9ec9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -60,6 +61,7 @@ Material:
     - _Depth: 128
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EmissionIntensity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -70,6 +72,7 @@ Material:
     - _Parallax: 0.02
     - _SampleScale: 1
     - _Scale: 0.0078125
+    - _SegmentNum: 32
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularPower: 32
@@ -83,3 +86,4 @@ Material:
     - _DiffuseColor: {r: 0, g: 1, b: 0.50344825, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 0.19117647, g: 0.16843307, b: 0.09418253, a: 1}
+  m_BuildTextureStacks: []

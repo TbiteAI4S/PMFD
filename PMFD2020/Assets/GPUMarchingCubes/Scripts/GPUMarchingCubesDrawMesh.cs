@@ -11,7 +11,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
     public int segmentNum = 32;                 // グリッドの一辺の分割数
     
     [Range(0,1)]
-    public float threashold = 0.4f;             // メッシュ化するスカラー値のしきい値
+    public float threashold = 0.1f;             // メッシュ化するスカラー値のしきい値
     public Material mat;                        // レンダリング用のマテリアル
 
     public Color DiffuseColor = Color.green;    // ディフューズカラー
@@ -41,10 +41,6 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
     Vector4[] vector4Neck = new Vector4[10];
     Vector4[] vector4Body = new Vector4[10];
     Vector4[] vector4Tail = new Vector4[10];
-    Vector4[] vector4ArmLeft = new Vector4[10];
-    Vector4[] vector4ArmRight = new Vector4[10];
-    Vector4[] vector4FootLeft = new Vector4[10];
-    Vector4[] vector4FootRight = new Vector4[10];
 
 
 
@@ -136,6 +132,10 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
 
             //テスト
             materials[i].SetVectorArray("_MPositions", vector4s);
+            materials[i].SetVectorArray("_jawPositions", vector4Jaw);
+            materials[i].SetVectorArray("_neckPositions", vector4Neck);
+            materials[i].SetVectorArray("_bodyPositions", vector4Body);
+            materials[i].SetVectorArray("_tailPositions", vector4Tail);
 
             Graphics.DrawMesh(meshs[i], Matrix4x4.identity, materials[i], 0);
         }
@@ -144,7 +144,7 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        //テスト
+        //ボーンのデータを受け取る
         MakeDragonBone = GameObject.Find("Doragon").GetComponent<MakeDragonBone>();
         for (int i = 0; i < 10; i++)
         {
@@ -154,13 +154,26 @@ public class GPUMarchingCubesDrawMesh : MonoBehaviour {
             vector4Body[i] = MakeDragonBone._Bodyborne[i];
             vector4Tail[i] = MakeDragonBone._Tailborne[i];
         }
-
+        for (int i = 0; i < 10; i++)
+        {
+            //Debug.Log("Body" + vector4Body[i] + "ArmLeft" + vector4ArmLeft[i]);
+        }
 
         Initialize();
     }
 
     void Update()
     {
+        //ボーンのデータを受け取る
+        for (int i = 0; i < 10; i++)
+        {
+            vector4s[i] = MakeDragonBone._Dragonborne[i];
+            vector4Jaw[i] = MakeDragonBone._Jawborne[i];
+            vector4Neck[i] = MakeDragonBone._Neckborne[i];
+            vector4Body[i] = MakeDragonBone._Bodyborne[i];
+            vector4Tail[i] = MakeDragonBone._Tailborne[i];
+        }
+        
         RenderMesh();
     }
 
