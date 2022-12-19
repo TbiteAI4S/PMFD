@@ -248,16 +248,16 @@ public class MakeDragonBone : MonoBehaviour
     public Vector3[][] right_wign_dragonborne;
 
     //シェーダーに渡す用の配列
-    public Vector3[] _Dragonborne = new Vector3[step];
-    public Vector3[] _Jawborne = new Vector3[step];
-    public Vector3[] _Neckborne = new Vector3[step];
-    public Vector3[] _Bodyborne = new Vector3[step];
-    public Vector3[] _Tailborne = new Vector3[step];
+    public Vector3[] _Dragonborne = new Vector3[10];
+    public Vector3[] _Jawborne = new Vector3[10];
+    public Vector3[] _Neckborne = new Vector3[10];
+    public Vector3[] _Bodyborne = new Vector3[10];
+    public Vector3[] _Tailborne = new Vector3[10];
 
-    public Vector3[] _ArmLeftborne = new Vector3[2 * step];
-    public Vector3[] _ArmRightborne = new Vector3[2* step];
-    public Vector3[] _FootLeftborne = new Vector3[2 * step];
-    public Vector3[] _FootRightborne = new Vector3[2 * step];
+    public Vector3[] _ArmLeftborne = new Vector3[20];
+    public Vector3[] _ArmRightborne = new Vector3[20];
+    public Vector3[] _FootLeftborne = new Vector3[20];
+    public Vector3[] _FootRightborne = new Vector3[20];
 
     //マテリアル
     private Material mat;
@@ -393,15 +393,14 @@ public class MakeDragonBone : MonoBehaviour
         makebone(dragonbone);
         makewingbone(wing_dragonbone);
         //左右対称のパーツを作成
-        make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
-        for (int i = 0; i < 10; i++)
-        {
-            Debug.Log("_ArmLeftborne" + _ArmLeftborne[i] + ",_ArmRightborne" + _ArmRightborne[i]);
-        }
+        make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);    
 
         //テスト
-        BoneDataToShader();    
-
+        BoneDataToShader();
+        for (int i = 0; i < 10; i++)
+        {
+            //Debug.Log("mdb_ArmLeftborne(" + _ArmLeftborne[i].x + "," + _ArmLeftborne[i].y + "," + _ArmLeftborne[i].z + ")");
+        }
 
     }
 
@@ -452,6 +451,9 @@ public class MakeDragonBone : MonoBehaviour
         makewingbone(wing_dragonbone);
         //左右対称のパーツを作成
         make_rightparts(dragonbone, right_arm_leg_dragonbone, wing_dragonbone, right_wign_dragonborne);
-        
+
+
+        //テスト
+        BoneDataToShader();
     }
 }
