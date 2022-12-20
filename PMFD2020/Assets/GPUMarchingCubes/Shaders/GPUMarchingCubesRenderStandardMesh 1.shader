@@ -120,8 +120,12 @@
 
             //上口
             for (int i = 0; i < 10; i=i+2) {
-                float sp = -sphere(pos - _MPositions[i], 0.05);
-                result = smoothMax(result, sp, 15); 
+                //float sp = -sphere(pos - _MPositions[i], 0.05);
+                //result = smoothMax(result, sp, 15); 
+            }
+            for (int c = 0; c < 8; c++) {
+                float sp = -Capsule(pos, _MPositions[c], _MPositions[c+1], 0.01);
+                result = smoothMax(result, sp, 15);
             }
             for (int j = 0; j < 10; j = j + 3) {
 

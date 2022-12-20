@@ -162,9 +162,10 @@ public class GPUMC4 : MonoBehaviour
             vector4ArmRight[i] = MakeDragonBone._ArmRightborne[i];
         }
         for (int i = 0; i < 10; i++)
-        {
+        {   /*
             Debug.Log("GPUMC4vector4ArmLeft(" + vector4ArmLeft[i].x + "," + vector4ArmLeft[i].y + "," + vector4ArmLeft[i].z + ")"
                 + "vector4ArmRight(" + vector4ArmRight[i].x + "," + vector4ArmRight[i].y + "," + vector4ArmRight[i].z + ")");
+            */
         }
 
         RenderMesh();
