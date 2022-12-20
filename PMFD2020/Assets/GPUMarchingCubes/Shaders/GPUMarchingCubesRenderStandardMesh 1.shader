@@ -115,7 +115,9 @@
             result = smoothMax(result, sp, 14);
             */
             
-            
+            float a = -Capsule(pos, float3(0.5, 0.7, 0.5), float3(0.8, 0.7, 0.5), 0.2);
+            result = smoothMax(result, a, 14);
+
             //上口
             for (int i = 0; i < 10; i=i+2) {
                 float sp = -sphere(pos - _MPositions[i], 0.05);
